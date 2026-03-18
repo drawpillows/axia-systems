@@ -420,17 +420,21 @@
 
     .hero-eyebrow {
       font-size: 9px;
-      font-weight: 500;
+      font-weight: 400;
       letter-spacing: 0.55em;
       color: var(--gold);
       text-transform: uppercase;
-      margin: 0;
+      margin: 0 0 24px 0;
       position: absolute;
       top: 11%;
       left: 50%;
       transform: translateX(-50%);
       white-space: nowrap;
       z-index: 3;
+    }
+
+    .hero-cities-mobile {
+      display: none;
     }
 
     .hero-title {
@@ -1218,7 +1222,8 @@
 
       /* Hero */
       .hero { padding: 80px 24px 60px; }
-      .hero-eyebrow { font-size: 8px; letter-spacing: 0.35em; top: 28%; }
+      .hero-eyebrow { position: static; transform: none; font-size: 8px; letter-spacing: 0.35em; margin-bottom: 20px; }
+      .hero-cities-mobile { display: block; font-size: 8px; letter-spacing: 0.3em; color: var(--cloud-mute); text-transform: uppercase; margin-bottom: 16px; }
       .hero-title { font-size: clamp(52px, 16vw, 80px); letter-spacing: 0.08em; }
       .hero-descriptor { font-size: 10px; letter-spacing: 0.14em; margin-top: 16px; }
       .hero-access-block { padding: 0 24px 48px; }
@@ -1278,8 +1283,9 @@
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
-    <p class="hero-eyebrow">A Mirza Minds Portfolio Company</p>
     <div class="hero-content">
+      <p class="hero-eyebrow">A Mirza Minds Portfolio Company</p>
+      <p class="hero-cities-mobile">Chicago &nbsp;•&nbsp; Miami &nbsp;•&nbsp; Dubai</p>
       <h1 class="hero-title">AXIA<br>Systems</h1>
       <p class="hero-descriptor">The infrastructure behind the organizations that move first.</p>
     </div>
@@ -1342,7 +1348,7 @@
     <div class="delivery-caption">
       <p class="delivery-label">The Ghost Audit</p>
       <p class="delivery-text">Our ghost audits are conducted before any formal engagement begins. We study your revenue patterns, intake process, staff interactions, and follow-up cadence without your team knowing we are watching.</p>
-      <p class="delivery-text">This is intentional. Organizations that request an audit prepare for one. What we find in a ghost audit is your operation at its most honest. That is the version that tells us exactly where the money is being left behind.</p>
+      <p class="delivery-text">This is intentional. Organizations that request an audit prepare for one. What we find in a ghost audit is your operation at its most honest. That is the version that shows us exactly where your revenue is leaking.</p>
     </div>
   </div>
 
