@@ -252,6 +252,15 @@
       justify-content: center;
     }
 
+    .hero-descriptor {
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      color: rgba(245,245,245,0.38);
+      text-transform: uppercase;
+      margin-top: 28px;
+    }
+
     .hero-access-block {
       position: relative;
       z-index: 2;
@@ -1172,6 +1181,7 @@
     <div class="hero-content">
       <h1 class="hero-title">AXIA<br>Systems</h1>
       <p class="hero-eyebrow">A Mirza Minds Portfolio Company</p>
+      <p class="hero-descriptor">Operational infrastructure for high-revenue organizations.</p>
     </div>
     <div class="hero-access-block">
       <div class="hero-input-wrap">
@@ -1361,6 +1371,15 @@
       document.getElementById('menuToggle').classList.toggle('active', isOpen);
     }
 
+    document.addEventListener('click', (e) => {
+      if (menuOverlay.classList.contains('open') &&
+          !menuOverlay.contains(e.target) &&
+          e.target !== document.getElementById('menuToggle') &&
+          !document.getElementById('menuToggle').contains(e.target)) {
+        toggleMenu();
+      }
+    });
+
     /* Modal */
     const overlay = document.getElementById('modalOverlay');
 
@@ -1380,7 +1399,7 @@
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        closeModal();
+        if (overlay.classList.contains('open')) closeModal();
         if (menuOverlay.classList.contains('open')) toggleMenu();
       }
     });
