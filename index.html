@@ -155,7 +155,7 @@
       position: absolute;
       inset: 0;
       background: url('hero-bg.jpg') center 40% / cover no-repeat;
-      filter: blur(4px) brightness(0.18) saturate(0.5);
+      filter: blur(5px) brightness(0.12) saturate(0.4);
       transform: scale(1.06);
     }
 
@@ -198,11 +198,20 @@
       font-size: clamp(60px, 9vw, 110px);
       font-weight: 700;
       letter-spacing: 0.2em;
-      color: var(--cloud);
       line-height: 1;
       text-transform: uppercase;
       margin-bottom: 24px;
-
+      /* Negative-space city mask */
+      background-image: url('hero-bg.jpg');
+      background-size: cover;
+      background-position: center 40%;
+      background-attachment: fixed;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      /* Boost brightness — pull warm gold city lights through letterforms */
+      filter: brightness(3.2) contrast(1.3) saturate(1.6) sepia(0.25);
     }
 
     .hero-rule {
