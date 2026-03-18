@@ -154,17 +154,17 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: url('hero-bg.jpg') center 35% / cover no-repeat;
-      filter: none;
-      transform: none;
+      background: url('hero-bg.jpg') center 40% / cover no-repeat;
+      filter: blur(4px) brightness(0.18) saturate(0.5);
+      transform: scale(1.06);
     }
 
     .hero-overlay {
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 85% 65% at 50% 42%, rgba(15,15,15,0.45) 0%, transparent 60%),
-        linear-gradient(to bottom, rgba(15,15,15,0.2) 0%, transparent 20%, transparent 60%, rgba(15,15,15,1) 100%);
+        radial-gradient(ellipse 80% 60% at 50% 50%, transparent 20%, rgba(15,15,15,0.7) 80%),
+        linear-gradient(to bottom, rgba(15,15,15,0.3) 0%, transparent 30%, transparent 70%, rgba(15,15,15,0.9) 100%);
     }
 
     .hero-content {
@@ -179,7 +179,8 @@
       object-fit: contain;
       margin: 0 auto 32px;
       display: block;
-      filter: none;
+      filter: drop-shadow(0 0 18px rgba(201,169,110,0.3));
+
     }
 
     .hero-eyebrow {
@@ -197,11 +198,11 @@
       font-size: clamp(60px, 9vw, 110px);
       font-weight: 700;
       letter-spacing: 0.2em;
+      color: var(--cloud);
       line-height: 1;
       text-transform: uppercase;
       margin-bottom: 24px;
-      /* Negative-space city mask */
-      color: var(--cloud);
+
     }
 
     .hero-rule {
@@ -243,22 +244,34 @@
       font-size: 10px;
       font-weight: 600;
       letter-spacing: 0.4em;
-      color: #000000;
+      color: var(--cloud);
       text-transform: uppercase;
-      background: #F5F5F5;
-      border: 1px solid #F5F5F5;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.15);
       padding: 18px 48px;
       cursor: pointer;
-      transition: background 0.35s, border-color 0.35s, color 0.35s;
+      transition: border-color 0.4s, color 0.4s, transform 0.3s;
       position: relative;
       overflow: hidden;
+
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(201,169,110,0.07), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s;
     }
 
     .btn-primary:hover {
-      background: #D1D1D1;
-      border-color: #D1D1D1;
-      color: #000000;
+      border-color: var(--gold-dim);
+      color: var(--gold);
+      transform: translateY(-2px);
     }
+
+    .btn-primary:hover::before { opacity: 1; }
 
     .btn-arrow {
       display: inline-block;
@@ -517,13 +530,6 @@
     .vetting-statement strong {
       color: var(--cloud);
       font-weight: 500;
-    }
-
-    /* ── Marble-to-black transition bridge ──────────────────── */
-    .marble-fade {
-      height: 120px;
-      background: linear-gradient(to bottom, #0F0F0F 0%, var(--onyx-mid) 100%);
-      border: none;
     }
 
     /* ── Footer ──────────────────────────────────────────────── */
@@ -913,7 +919,7 @@
       <div class="hero-rule"></div>
       <p class="hero-sub">Elite Systems Intelligence &nbsp;|&nbsp; Chicago &nbsp;•&nbsp; Miami &nbsp;•&nbsp; Dubai</p>
       <p class="hero-gate">
-        Access to the AXIA intelligence layer is restricted to hand-selected firms. We do not accept public solicitations.
+        Access to the AXIA Systems Intelligence Layer is strictly by invitation or hand-selection. We do not accept public solicitations.
       </p>
       <button class="btn-primary" onclick="openModal()">
         Validate Briefing ID
@@ -956,7 +962,7 @@
     <div class="interlude-content reveal">
       <div class="interlude-mark">"</div>
       <p class="interlude-quote">Precision is not a feature.<br>It is the only acceptable standard.</p>
-      <p class="interlude-attr">AXIA Systems &nbsp;.&nbsp; Intelligence Division</p>
+      <p class="interlude-attr">AXIA Systems &nbsp;—&nbsp; Intelligence Division</p>
     </div>
   </div>
 
@@ -987,7 +993,6 @@
   </div>
 
   <!-- ── Footer ────────────────────────────────────────────── -->
-  <div class="marble-fade"></div>
   <footer>
     <div class="footer-main">
       <div>
@@ -1016,7 +1021,7 @@
             <p class="hub-note">International Operations</p>
           </div>
         </div>
-        <p class="footer-op-note">Private Offices. Accessible by Appointment Only.</p>
+        <p class="footer-op-note">Private Offices — Accessible by Appointment Only.</p>
       </div>
       <div>
         <p class="footer-col-label">Access Protocol</p>
