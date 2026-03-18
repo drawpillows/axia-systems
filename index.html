@@ -913,7 +913,74 @@
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <img src="logo-hero.png" alt="AXIA Systems Logo" class="hero-logo-mark" />
+      <!-- AXIA Pyramid — Inline SVG for vertex animation -->
+      <svg id="axiaPyramid" class="hero-logo-mark" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" aria-label="AXIA Systems">
+        <defs>
+          <!-- Gold gradient for strokes -->
+          <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f0d080"/>
+            <stop offset="40%" stop-color="#C9A96E"/>
+            <stop offset="70%" stop-color="#e8c87a"/>
+            <stop offset="100%" stop-color="#8A6F42"/>
+          </linearGradient>
+          <!-- Glow filter for active vertices -->
+          <filter id="vertexGlow" x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur stdDeviation="2.5" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!--
+          Pyramid geometry — viewBox 200x180
+          Outer triangle vertices:
+            Top peak:        T  = (100, 4)
+            Bottom-left:     BL = (4,  174)
+            Bottom-right:    BR = (196, 174)
+
+          Inner intersection nodes (the 5 gold dots):
+            Top inner:       N1 = (100, 62)    — top-center inner
+            Mid-left:        N2 = (55,  120)   — left mid
+            Mid-right:       N3 = (145, 120)   — right mid
+            Bot-left inner:  N4 = (76,  155)   — lower-left inner
+            Bot-right inner: N5 = (124, 155)   — lower-right inner
+        -->
+
+        <!-- Outer triangle -->
+        <polygon points="100,4 4,174 196,174"
+          fill="none" stroke="url(#goldGrad)" stroke-width="2.2" stroke-linejoin="round"/>
+
+        <!-- Inner structural lines -->
+        <!-- Left side inner: BL to N1 -->
+        <line x1="4" y1="174" x2="100" y2="62" stroke="url(#goldGrad)" stroke-width="1.4"/>
+        <!-- Right side inner: BR to N1 -->
+        <line x1="196" y1="174" x2="100" y2="62" stroke="url(#goldGrad)" stroke-width="1.4"/>
+        <!-- Horizontal mid: N2 to N3 -->
+        <line x1="55" y1="120" x2="145" y2="120" stroke="url(#goldGrad)" stroke-width="1.4"/>
+        <!-- Cross diagonals -->
+        <line x1="55" y1="120" x2="124" y2="155" stroke="url(#goldGrad)" stroke-width="1.4"/>
+        <line x1="145" y1="120" x2="76" y2="155" stroke="url(#goldGrad)" stroke-width="1.4"/>
+        <!-- Bottom cross: BL to N3, BR to N2 -->
+        <line x1="4" y1="174" x2="145" y2="120" stroke="url(#goldGrad)" stroke-width="1.4"/>
+        <line x1="196" y1="174" x2="55" y2="120" stroke="url(#goldGrad)" stroke-width="1.4"/>
+        <!-- Peak to mid nodes -->
+        <line x1="100" y1="4" x2="76" y2="155" stroke="url(#goldGrad)" stroke-width="1.4"/>
+        <line x1="100" y1="4" x2="124" y2="155" stroke="url(#goldGrad)" stroke-width="1.4"/>
+
+        <!-- Vertex dots — 5 inner nodes (animated) -->
+        <!-- Boot sequence: N4 -> N5 -> N2 -> N3 -> N1 (bottom-left to bottom-right, up) -->
+        <circle class="v-node" id="vn4" cx="76"  cy="155" r="3.2" fill="#C9A96E"/>
+        <circle class="v-node" id="vn5" cx="124" cy="155" r="3.2" fill="#C9A96E"/>
+        <circle class="v-node" id="vn2" cx="55"  cy="120" r="3.2" fill="#C9A96E"/>
+        <circle class="v-node" id="vn3" cx="145" cy="120" r="3.2" fill="#C9A96E"/>
+        <circle class="v-node" id="vn1" cx="100" cy="62"  r="3.2" fill="#C9A96E"/>
+
+        <!-- Activation halos — white glow rings, hidden by default -->
+        <circle class="v-halo" id="vh4" cx="76"  cy="155" r="3.2" fill="none"/>
+        <circle class="v-halo" id="vh5" cx="124" cy="155" r="3.2" fill="none"/>
+        <circle class="v-halo" id="vh2" cx="55"  cy="120" r="3.2" fill="none"/>
+        <circle class="v-halo" id="vh3" cx="145" cy="120" r="3.2" fill="none"/>
+        <circle class="v-halo" id="vh1" cx="100" cy="62"  r="3.2" fill="none"/>
+      </svg>
       <p class="hero-eyebrow">A Mirza Minds Portfolio Company</p>
       <h1 class="hero-title">AXIA<br>Systems</h1>
       <div class="hero-rule"></div>
@@ -1122,6 +1189,85 @@
     }
 
     /* Static — no scroll reveal animations */
+
+    /* ── Pyramid Activation Sequence ─────────────────────────────
+       Boot order: N4 (bot-left) -> N5 (bot-right) -> N2 (mid-left)
+                -> N3 (mid-right) -> N1 (top peak)
+       Each node: 0.4s light-up, 0.2s gap between nodes
+       After all 5 lit: 1s collective fade-out
+       Runs once per session via sessionStorage flag
+    ──────────────────────────────────────────────────────────── */
+    (function pyramidActivation() {
+      // Only run once per session
+      if (sessionStorage.getItem('axia_boot_done')) return;
+      sessionStorage.setItem('axia_boot_done', '1');
+
+      const sequence = ['vh4','vh5','vh2','vh3','vh1'];
+      const nodeIds  = ['vn4','vn5','vn2','vn3','vn1'];
+      const STEP_DELAY  = 600;  // ms between each node lighting up
+      const ACTIVE_DUR  = 400;  // ms each node stays lit before next fires
+      const FADE_DELAY  = 200;  // ms after last node before collective fade
+      const FADE_DUR    = 1000; // ms for collective fade-out
+
+      // Inject activation styles
+      const style = document.createElement('style');
+      style.textContent = `
+        .v-halo {
+          opacity: 0;
+          stroke: #F5F5F5;
+          stroke-width: 5;
+          filter: url(#vertexGlow);
+          transition: opacity 0.15s ease-in;
+        }
+        .v-halo.lit {
+          opacity: 1;
+        }
+        .v-halo.fading {
+          opacity: 0;
+          transition: opacity ${FADE_DUR}ms ease-out;
+        }
+        .v-node {
+          transition: fill 0.15s ease-in;
+        }
+        .v-node.lit {
+          fill: #F5F5F5;
+        }
+        .v-node.fading {
+          fill: #C9A96E;
+          transition: fill ${FADE_DUR}ms ease-out;
+        }
+      `;
+      document.head.appendChild(style);
+
+      // Fire sequence after a short initial pause (site has loaded)
+      let delay = 400;
+
+      sequence.forEach((haloId, i) => {
+        const nodeId = nodeIds[i];
+
+        // Light up this node
+        setTimeout(() => {
+          const halo = document.getElementById(haloId);
+          const node = document.getElementById(nodeId);
+          if (halo) halo.classList.add('lit');
+          if (node) node.classList.add('lit');
+        }, delay);
+
+        delay += STEP_DELAY;
+      });
+
+      // After last node lights up, wait then fade all out together
+      const fadeStart = delay + FADE_DELAY;
+      setTimeout(() => {
+        sequence.forEach((haloId, i) => {
+          const halo = document.getElementById(haloId);
+          const node = document.getElementById(nodeIds[i]);
+          if (halo) { halo.classList.remove('lit'); halo.classList.add('fading'); }
+          if (node) { node.classList.remove('lit'); node.classList.add('fading'); }
+        });
+      }, fadeStart);
+
+    })();
   </script>
 </body>
 </html>
