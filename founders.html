@@ -110,9 +110,14 @@
       letter-spacing: 0.45em;
       color: rgba(245,245,245,0.3);
       text-transform: uppercase;
-      pointer-events: none;
+      pointer-events: auto;
+      cursor: default;
+      transition: color 0.4s, text-shadow 0.4s;
     }
-
+    .nav-cities:hover {
+      color: var(--gold-dim);
+      text-shadow: 0 0 18px rgba(201,169,110,0.35);
+    }
     .nav-hamburger {
       background: none;
       border: none;
