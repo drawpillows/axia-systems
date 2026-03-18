@@ -213,7 +213,7 @@
       display: grid;
       grid-template-columns: 340px 1fr;
       gap: 80px;
-      align-items: start;
+      align-items: stretch;
       padding-bottom: 100px;
       border-bottom: 1px solid var(--gunmetal);
       margin-bottom: 100px;
@@ -243,7 +243,8 @@
 
     .founder-photo {
       width: 100%;
-      aspect-ratio: 3/4;
+      height: 100%;
+      aspect-ratio: unset;
       object-fit: cover;
       object-position: top center;
       display: block;
@@ -590,14 +591,16 @@
       </div>
       <div class="founder-text">
         <p class="founder-text-eyebrow">The Founder</p>
-        <h2 class="founder-text-heading">Built by<br>Experience.</h2>
+        <div style="display:flex;align-items:flex-end;gap:24px;">
+          <h2 class="founder-text-heading" style="margin:0;">Built by<br>Experience.</h2>
+          <img src="fam-signature.webp" alt="Fam Mirza signature" class="founder-signature" style="margin:0 0 6px 0;" />
+        </div>
         <div class="founder-text-rule"></div>
         <div class="founder-text-body">
           <p>Fam Mirza has spent two decades building and scaling global enterprises under the Mirza Minds portfolio. From consumer brands that generated tens of millions in their first year to initiatives that impacted over four million lives across multiple continents, he understands what it takes to operate at scale.</p>
           <p>His philosophy has never changed. The difference between a business that plateaus and one that compounds is infrastructure. Not software. Not tools. Infrastructure built around how the organization actually operates.</p>
           <p>AXIA Systems is the distillation of that conviction. Every system we build is rooted in the same architecture Fam used to scale his own companies to eight figures and beyond.</p>
         </div>
-        <img src="fam-signature.webp" alt="Fam Mirza signature" class="founder-signature" />
       </div>
     </div>
 
