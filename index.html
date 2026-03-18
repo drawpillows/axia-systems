@@ -108,6 +108,20 @@
       gap: 36px;
     }
 
+    .nav-link {
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      color: var(--cloud-mute);
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-link:hover {
+      color: var(--cloud);
+    }
+
     .nav-label {
       font-size: 9px;
       font-weight: 500;
@@ -1006,12 +1020,11 @@
       <img src="logo.png" alt="AXIA Systems" class="nav-logo-img" />
       <span class="nav-logo-text">AXIA Systems</span>
     </a>
-    <div class="nav-right">
-      <div class="nav-status">
-        <div class="status-dot"></div>
-        <span>Operational</span>
-      </div>
-    </div>
+    <nav class="nav-right">
+      <a href="#competencies" class="nav-link">Services</a>
+      <a href="#selection" class="nav-link">Selection</a>
+      <a href="#access" class="nav-link">Access</a>
+    </nav>
   </nav>
 
   <!-- ── Hero ──────────────────────────────────────────────── -->
@@ -1051,7 +1064,7 @@
   </div>
 
   <!-- ── Core Competencies ──────────────────────────────────── -->
-  <div class="competencies-wrap">
+  <div class="competencies-wrap" id="competencies">
     <div class="section-wrap">
       <div class="section-rule"></div>
       <div class="cards-grid">
@@ -1063,19 +1076,19 @@
         <div class="card reveal">
           <p class="card-num">02</p>
           <h3 class="card-title">Silent Yield<br>Optimization</h3>
-          <p class="card-body">We locate invisible friction points in your workflow. We stop the quiet loss of revenue caused by disconnected systems and legacy dependencies.</p>
+          <p class="card-body">Most revenue loss is invisible. We find the operational inefficiencies behind it and remove them.</p>
         </div>
         <div class="card reveal">
           <p class="card-num">03</p>
           <h3 class="card-title">Technological<br>Sovereignty</h3>
-          <p class="card-body">We manage the frontier of AI and automation for you. Our partners operate at the apex of their discipline without the burden of technical complexity.</p>
+          <p class="card-body">We manage the frontier of AI and automation so your focus stays on the work that built your reputation.</p>
         </div>
       </div>
     </div>
   </div>
 
   <!-- ── Vetting Statement ──────────────────────────────────── -->
-  <div class="vetting-wrap">
+  <div class="vetting-wrap" id="selection">
     <div class="section-wrap">
       <div class="vetting-grid">
         <div>
@@ -1084,7 +1097,7 @@
           <div class="vetting-tags reveal">
             <div class="vtag">Elite Benchmarking</div>
             <div class="vtag">Private Referral Network</div>
-            <div class="vtag">Institutional Discretion</div>
+            <div class="vtag">Confidential Engagement Protocol</div>
             <div class="vtag">Strategic Intelligence Briefing</div>
           </div>
         </div>
@@ -1100,14 +1113,14 @@
   </div>
 
   <!-- ── Footer ────────────────────────────────────────────── -->
-  <footer>
+  <footer id="access">
     <div class="footer-main">
       <div>
         <div class="footer-logo-wrap">
           <img src="logo.png" alt="AXIA Systems" class="footer-logo-img" />
           <p class="footer-brand">AXIA Systems</p>
         </div>
-        <p class="footer-tagline">Elite Systems Intelligence</p>
+        <p class="footer-tagline">Systems Intelligence</p>
         <p class="footer-disclosure">
           A Mirza Minds portfolio company. Client identities and engagements are held under permanent non-disclosure. Selection only.
         </p>
