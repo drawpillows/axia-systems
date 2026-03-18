@@ -20,8 +20,10 @@
       --gunmetal:    #2C2C2C;
       --gunmetal-lt: #3A3A3A;
       --cloud:       #F5F5F5;
-      --cloud-dim:   #ABABAB;
+      --cloud-dim:   #A0A0A0;
       --cloud-mute:  #666666;
+      --silver:      #C0C0C0;
+      --silver-dim:  #888888;
       --gold:        #C9A96E;
       --gold-dim:    #8A6F42;
       --serif:       'Cinzel', serif;
@@ -253,13 +255,13 @@
       font-size: 10px;
       font-weight: 600;
       letter-spacing: 0.4em;
-      color: var(--cloud);
+      color: #000000;
       text-transform: uppercase;
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.15);
+      background: #F5F5F5;
+      border: 1px solid #F5F5F5;
       padding: 18px 48px;
       cursor: pointer;
-      transition: border-color 0.4s, color 0.4s, transform 0.3s;
+      transition: background 0.4s, border-color 0.4s, color 0.4s, transform 0.3s;
       position: relative;
       overflow: hidden;
 
@@ -269,24 +271,25 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(201,169,110,0.07), transparent 60%);
+      background: transparent;
       opacity: 0;
       transition: opacity 0.4s;
     }
 
     .btn-primary:hover {
-      border-color: var(--gold-dim);
-      color: var(--gold);
+      background: #D1D1D1;
+      border-color: #D1D1D1;
+      color: #000000;
       transform: translateY(-2px);
     }
 
-    .btn-primary:hover::before { opacity: 1; }
+    .btn-primary:hover::before { opacity: 0; }
 
     .btn-arrow {
       display: inline-block;
       width: 18px;
       height: 1px;
-      background: currentColor;
+      background: #000000;
       position: relative;
       transition: width 0.3s;
     }
@@ -296,8 +299,8 @@
       position: absolute;
       right: 0; top: -3px;
       width: 7px; height: 7px;
-      border-top: 1px solid currentColor;
-      border-right: 1px solid currentColor;
+      border-top: 1px solid #000000;
+      border-right: 1px solid #000000;
       transform: rotate(45deg);
     }
 
@@ -338,6 +341,43 @@
     }
 
     /* animations removed — static load */
+
+    /* ── Axial Glimmer ──────────────────────────────────────── */
+    .logo-glimmer-wrap {
+      position: relative;
+      display: inline-block;
+      margin: 0 auto 32px;
+    }
+
+    .hero-logo-mark {
+      display: block;
+      filter: drop-shadow(0 0 18px rgba(201,169,110,0.3));
+    }
+
+    .logo-glimmer-wrap::after {
+      content: '';
+      position: absolute;
+      top: -10%;
+      left: -60%;
+      width: 30%;
+      height: 120%;
+      background: linear-gradient(
+        105deg,
+        transparent 30%,
+        rgba(255,255,255,0.55) 50%,
+        rgba(220,210,190,0.3) 55%,
+        transparent 70%
+      );
+      transform: skewX(-15deg);
+      animation: axialGlimmer 1s ease-out 0.8s 1 forwards;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @keyframes axialGlimmer {
+      0%   { left: -60%; opacity: 1; }
+      100% { left: 130%; opacity: 1; }
+    }
 
     /* ── Section Wrapper ─────────────────────────────────────── */
     .section-wrap {
@@ -412,7 +452,7 @@
       font-family: var(--serif);
       font-size: 10px;
       letter-spacing: 0.35em;
-      color: var(--gold-dim);
+      color: #4A4A4A;
       margin-bottom: 28px;
     }
 
@@ -804,22 +844,22 @@
     }
 
     .field-input::placeholder { color: #3A3A3A; }
-    .field-input:focus { border-bottom-color: var(--gold-dim); }
+    .field-input:focus { border-bottom-color: var(--silver); }
 
     .btn-submit {
       width: 100%;
-      background: transparent;
-      border: 1px solid var(--gunmetal-lt);
+      background: #F5F5F5;
+      border: 1px solid #F5F5F5;
       padding: 18px;
       font-family: var(--serif);
       font-size: 10px;
       font-weight: 600;
       letter-spacing: 0.4em;
-      color: var(--cloud);
+      color: #000000;
       text-transform: uppercase;
       cursor: pointer;
       margin-top: 8px;
-      transition: border-color 0.4s, color 0.4s;
+      transition: background 0.4s, border-color 0.4s, color 0.4s;
       position: relative;
       overflow: hidden;
     }
@@ -828,13 +868,12 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(201,169,110,0.08), transparent 60%);
+      background: transparent;
       opacity: 0;
-      transition: opacity 0.4s;
     }
 
-    .btn-submit:hover { border-color: var(--gold-dim); color: var(--gold); }
-    .btn-submit:hover::before { opacity: 1; }
+    .btn-submit:hover { background: #D1D1D1; border-color: #D1D1D1; color: #000000; }
+    .btn-submit:hover::before { opacity: 0; }
     .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
 
     /* Success */
@@ -922,7 +961,9 @@
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <img src="logo-hero.png" alt="AXIA Systems Logo" class="hero-logo-mark" />
+      <div class="logo-glimmer-wrap">
+        <img src="logo-hero.png" alt="AXIA Systems Logo" class="hero-logo-mark" style="width:90px;height:90px;object-fit:contain;" />
+      </div>
       <p class="hero-eyebrow">A Mirza Minds Portfolio Company</p>
       <h1 class="hero-title">AXIA<br>Systems</h1>
       <div class="hero-rule"></div>
@@ -971,7 +1012,7 @@
     <div class="interlude-content reveal">
       <div class="interlude-mark">"</div>
       <p class="interlude-quote">Precision is not a feature.<br>It is the only acceptable standard.</p>
-      <p class="interlude-attr">AXIA Systems &nbsp;—&nbsp; Intelligence Division</p>
+      <p class="interlude-attr">AXIA Systems &nbsp;.&nbsp; Intelligence Division</p>
     </div>
   </div>
 
@@ -1030,7 +1071,7 @@
             <p class="hub-note">International Operations</p>
           </div>
         </div>
-        <p class="footer-op-note">Private Offices — Accessible by Appointment Only.</p>
+        <p class="footer-op-note">Private Offices. Accessible by Appointment Only.</p>
       </div>
       <div>
         <p class="footer-col-label">Access Protocol</p>
