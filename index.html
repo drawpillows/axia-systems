@@ -322,7 +322,7 @@
       color: var(--cloud);
       line-height: 0.88;
       text-transform: uppercase;
-      margin-bottom: 0;
+      margin-bottom: 20px;
     }
 
     .hero-rule {
@@ -339,7 +339,7 @@
       letter-spacing: 0.5em;
       color: var(--cloud-dim);
       text-transform: uppercase;
-      margin-bottom: 48px;
+      margin-bottom: 28px;
     }
 
     .hero-gate {
@@ -651,7 +651,64 @@
       font-weight: 500;
     }
 
-    /* ── Footer ──────────────────────────────────────────────── */
+     /* ── Criteria Grid ─────────────────────────────────────────── */
+    .criteria-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--gunmetal);
+      border: 1px solid var(--gunmetal);
+      margin-bottom: 64px;
+    }
+
+    .criteria-block {
+      background: var(--onyx-card);
+      padding: 48px 40px 52px;
+      position: relative;
+      transition: background 0.4s;
+    }
+
+    .criteria-block:hover {
+      background: #131313;
+    }
+
+    .criteria-num {
+      font-family: var(--serif);
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      color: var(--gold-dim);
+      margin-bottom: 20px;
+    }
+
+    .criteria-title {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--cloud);
+      text-transform: uppercase;
+      line-height: 1.4;
+      margin-bottom: 16px;
+    }
+
+    .criteria-body {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--cloud-dim);
+    }
+
+    .vetting-close {
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      color: var(--cloud-mute);
+      text-align: center;
+      text-transform: uppercase;
+      padding-top: 8px;
+    }
+
+    /* ── Footer ────────────────────────────────────────────── */
     footer {
       background: var(--onyx-mid);
       border-top: 1px solid var(--gunmetal);
@@ -1031,9 +1088,9 @@
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
+      <p class="hero-sub">Chicago &nbsp;&nbsp;•&nbsp;&nbsp; Miami &nbsp;&nbsp;•&nbsp;&nbsp; Dubai</p>
       <h1 class="hero-title">AXIA<br>Systems</h1>
       <p class="hero-eyebrow">A Mirza Minds Portfolio Company</p>
-      <p class="hero-sub">Chicago &nbsp;&nbsp;•&nbsp;&nbsp; Miami &nbsp;&nbsp;•&nbsp;&nbsp; Dubai</p>
       <div class="hero-input-wrap">
         <input
           type="text"
@@ -1086,27 +1143,35 @@
     </div>
   </div>
 
-  <!-- ── Vetting Statement ──────────────────────────────────── -->
+  <!-- ── Selection Standard ──────────────────────────────────── -->
   <div class="vetting-wrap" id="selection">
     <div class="section-wrap">
-      <div class="vetting-grid">
-        <div>
-          <h2 class="section-heading">The Selection<br>Standard</h2>
-          <div class="section-rule"></div>
-          <div class="vetting-tags reveal">
-            <div class="vtag">Elite Benchmarking</div>
-            <div class="vtag">Private Referral Network</div>
-            <div class="vtag">Confidential Engagement Protocol</div>
-            <div class="vtag">Strategic Intelligence Briefing</div>
-          </div>
+      <p class="section-eyebrow">How Partners Are Chosen</p>
+      <h2 class="section-heading">The Selection<br>Standard</h2>
+      <div class="section-rule"></div>
+      <div class="criteria-grid">
+        <div class="criteria-block reveal">
+          <p class="criteria-num">01</p>
+          <h3 class="criteria-title">Revenue Threshold</h3>
+          <p class="criteria-body">AXIA partners operate at a level where systemic inefficiency carries real cost. We work exclusively with high-revenue organizations where optimization has measurable impact.</p>
         </div>
-        <div>
-          <p class="vetting-statement reveal">
-            AXIA Systems is a private portfolio company of Mirza Minds. Our partners are identified through a signature selection process — not an application. If you have received a Strategic Intelligence Briefing, your organization has already been evaluated.<br><br>
-            New partnerships are accepted by invitation or referral only.
-          </p>
+        <div class="criteria-block reveal">
+          <p class="criteria-num">02</p>
+          <h3 class="criteria-title">Private Referral Network</h3>
+          <p class="criteria-body">Most introductions originate within our existing partner network. If someone inside our ecosystem has referred your organization, that endorsement carries weight in the evaluation process.</p>
+        </div>
+        <div class="criteria-block reveal">
+          <p class="criteria-num">03</p>
+          <h3 class="criteria-title">Strategic Alignment</h3>
+          <p class="criteria-body">We assess whether an organization is positioned to act on what we build. Infrastructure without execution readiness produces no return. Alignment is evaluated before any engagement begins.</p>
+        </div>
+        <div class="criteria-block reveal">
+          <p class="criteria-num">04</p>
+          <h3 class="criteria-title">Intelligence Briefing</h3>
+          <p class="criteria-body">Selected organizations receive a private Strategic Intelligence Briefing before any formal engagement. If you have received one, your evaluation is already underway.</p>
         </div>
       </div>
+      <p class="vetting-close">New partnerships are accepted by invitation or referral only.</p>
     </div>
   </div>
 
