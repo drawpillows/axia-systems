@@ -913,74 +913,39 @@
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <!-- AXIA Pyramid — Inline SVG for vertex animation -->
-      <svg id="axiaPyramid" class="hero-logo-mark" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" aria-label="AXIA Systems">
-        <defs>
-          <!-- Gold gradient for strokes -->
-          <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#f0d080"/>
-            <stop offset="40%" stop-color="#C9A96E"/>
-            <stop offset="70%" stop-color="#e8c87a"/>
-            <stop offset="100%" stop-color="#8A6F42"/>
-          </linearGradient>
-          <!-- Glow filter for active vertices -->
-          <filter id="vertexGlow" x="-80%" y="-80%" width="260%" height="260%">
-            <feGaussianBlur stdDeviation="2.5" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-        </defs>
-
-        <!--
-          Pyramid geometry — viewBox 200x180
-          Outer triangle vertices:
-            Top peak:        T  = (100, 4)
-            Bottom-left:     BL = (4,  174)
-            Bottom-right:    BR = (196, 174)
-
-          Inner intersection nodes (the 5 gold dots):
-            Top inner:       N1 = (100, 62)    — top-center inner
-            Mid-left:        N2 = (55,  120)   — left mid
-            Mid-right:       N3 = (145, 120)   — right mid
-            Bot-left inner:  N4 = (76,  155)   — lower-left inner
-            Bot-right inner: N5 = (124, 155)   — lower-right inner
-        -->
-
-        <!-- Outer triangle -->
-        <polygon points="100,4 4,174 196,174"
-          fill="none" stroke="url(#goldGrad)" stroke-width="2.2" stroke-linejoin="round"/>
-
-        <!-- Inner structural lines -->
-        <!-- Left side inner: BL to N1 -->
-        <line x1="4" y1="174" x2="100" y2="62" stroke="url(#goldGrad)" stroke-width="1.4"/>
-        <!-- Right side inner: BR to N1 -->
-        <line x1="196" y1="174" x2="100" y2="62" stroke="url(#goldGrad)" stroke-width="1.4"/>
-        <!-- Horizontal mid: N2 to N3 -->
-        <line x1="55" y1="120" x2="145" y2="120" stroke="url(#goldGrad)" stroke-width="1.4"/>
-        <!-- Cross diagonals -->
-        <line x1="55" y1="120" x2="124" y2="155" stroke="url(#goldGrad)" stroke-width="1.4"/>
-        <line x1="145" y1="120" x2="76" y2="155" stroke="url(#goldGrad)" stroke-width="1.4"/>
-        <!-- Bottom cross: BL to N3, BR to N2 -->
-        <line x1="4" y1="174" x2="145" y2="120" stroke="url(#goldGrad)" stroke-width="1.4"/>
-        <line x1="196" y1="174" x2="55" y2="120" stroke="url(#goldGrad)" stroke-width="1.4"/>
-        <!-- Peak to mid nodes -->
-        <line x1="100" y1="4" x2="76" y2="155" stroke="url(#goldGrad)" stroke-width="1.4"/>
-        <line x1="100" y1="4" x2="124" y2="155" stroke="url(#goldGrad)" stroke-width="1.4"/>
-
-        <!-- Vertex dots — 5 inner nodes (animated) -->
-        <!-- Boot sequence: N4 -> N5 -> N2 -> N3 -> N1 (bottom-left to bottom-right, up) -->
-        <circle class="v-node" id="vn4" cx="76"  cy="155" r="3.2" fill="#C9A96E"/>
-        <circle class="v-node" id="vn5" cx="124" cy="155" r="3.2" fill="#C9A96E"/>
-        <circle class="v-node" id="vn2" cx="55"  cy="120" r="3.2" fill="#C9A96E"/>
-        <circle class="v-node" id="vn3" cx="145" cy="120" r="3.2" fill="#C9A96E"/>
-        <circle class="v-node" id="vn1" cx="100" cy="62"  r="3.2" fill="#C9A96E"/>
-
-        <!-- Activation halos — white glow rings, hidden by default -->
-        <circle class="v-halo" id="vh4" cx="76"  cy="155" r="3.2" fill="none"/>
-        <circle class="v-halo" id="vh5" cx="124" cy="155" r="3.2" fill="none"/>
-        <circle class="v-halo" id="vh2" cx="55"  cy="120" r="3.2" fill="none"/>
-        <circle class="v-halo" id="vh3" cx="145" cy="120" r="3.2" fill="none"/>
-        <circle class="v-halo" id="vh1" cx="100" cy="62"  r="3.2" fill="none"/>
-      </svg>
+      <!-- AXIA Pyramid — Inline SVG + Canvas light overlay -->
+      <div id="axiaPyramidWrap" style="position:relative;display:inline-block;">
+        <svg id="axiaPyramid" class="hero-logo-mark" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" aria-label="AXIA Systems" style="display:block;">
+          <defs>
+            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%"   stop-color="#f0d080"/>
+              <stop offset="40%" stop-color="#C9A96E"/>
+              <stop offset="70%" stop-color="#e8c87a"/>
+              <stop offset="100%" stop-color="#8A6F42"/>
+            </linearGradient>
+          </defs>
+          <!-- Outer triangle -->
+          <polygon points="100,4 4,174 196,174" fill="none" stroke="url(#goldGrad)" stroke-width="2.2" stroke-linejoin="round"/>
+          <!-- Inner lines -->
+          <line x1="4"   y1="174" x2="100" y2="62"  stroke="url(#goldGrad)" stroke-width="1.4"/>
+          <line x1="196" y1="174" x2="100" y2="62"  stroke="url(#goldGrad)" stroke-width="1.4"/>
+          <line x1="55"  y1="120" x2="145" y2="120" stroke="url(#goldGrad)" stroke-width="1.4"/>
+          <line x1="55"  y1="120" x2="124" y2="155" stroke="url(#goldGrad)" stroke-width="1.4"/>
+          <line x1="145" y1="120" x2="76"  y2="155" stroke="url(#goldGrad)" stroke-width="1.4"/>
+          <line x1="4"   y1="174" x2="145" y2="120" stroke="url(#goldGrad)" stroke-width="1.4"/>
+          <line x1="196" y1="174" x2="55"  y2="120" stroke="url(#goldGrad)" stroke-width="1.4"/>
+          <line x1="100" y1="4"   x2="76"  y2="155" stroke="url(#goldGrad)" stroke-width="1.4"/>
+          <line x1="100" y1="4"   x2="124" y2="155" stroke="url(#goldGrad)" stroke-width="1.4"/>
+          <!-- Static gold dots (always visible) -->
+          <circle cx="76"  cy="155" r="3" fill="#C9A96E"/>
+          <circle cx="124" cy="155" r="3" fill="#C9A96E"/>
+          <circle cx="55"  cy="120" r="3" fill="#C9A96E"/>
+          <circle cx="145" cy="120" r="3" fill="#C9A96E"/>
+          <circle cx="100" cy="62"  r="3" fill="#C9A96E"/>
+        </svg>
+        <!-- Canvas overlay for realistic light beams -->
+        <canvas id="pyramidCanvas" style="position:absolute;top:0;left:0;pointer-events:none;"></canvas>
+      </div>
       <p class="hero-eyebrow">A Mirza Minds Portfolio Company</p>
       <h1 class="hero-title">AXIA<br>Systems</h1>
       <div class="hero-rule"></div>
@@ -1190,82 +1155,238 @@
 
     /* Static — no scroll reveal animations */
 
-    /* ── Pyramid Activation Sequence ─────────────────────────────
-       Boot order: N4 (bot-left) -> N5 (bot-right) -> N2 (mid-left)
-                -> N3 (mid-right) -> N1 (top peak)
-       Each node: 0.4s light-up, 0.2s gap between nodes
-       After all 5 lit: 1s collective fade-out
-       Runs once per session via sessionStorage flag
-    ──────────────────────────────────────────────────────────── */
+    /* ── Pyramid Activation Sequence — Canvas Light Beam Engine ────────────────────────────────────────────────────────────
+     Boot order (bottom up):
+       BL outer -> BR outer -> N4 inner -> N5 inner -> N2 mid-left
+       -> N3 mid-right -> N1 top inner -> T peak outer
+     Each node: realistic corona + 4 directional beam spikes
+     Collective fade after all nodes lit
+     Runs once per session
+    ─────────────────────────────────────────────────────────────────────────────── */
     (function pyramidActivation() {
-      // Only run once per session
-      if (sessionStorage.getItem('axia_boot_done')) return;
-      sessionStorage.setItem('axia_boot_done', '1');
+      const forceRun = new URLSearchParams(window.location.search).has('preview_anim');
+      if (!forceRun) {
+        if (sessionStorage.getItem('axia_boot_v2')) return;
+        sessionStorage.setItem('axia_boot_v2', '1');
+      }
 
-      const sequence = ['vh4','vh5','vh2','vh3','vh1'];
-      const nodeIds  = ['vn4','vn5','vn2','vn3','vn1'];
-      const STEP_DELAY  = 600;  // ms between each node lighting up
-      const ACTIVE_DUR  = 400;  // ms each node stays lit before next fires
-      const FADE_DELAY  = 200;  // ms after last node before collective fade
-      const FADE_DUR    = 1000; // ms for collective fade-out
+      const svg    = document.getElementById('axiaPyramid');
+      const canvas = document.getElementById('pyramidCanvas');
+      if (!svg || !canvas) return;
 
-      // Inject activation styles
-      const style = document.createElement('style');
-      style.textContent = `
-        .v-halo {
-          opacity: 0;
-          stroke: #F5F5F5;
-          stroke-width: 5;
-          filter: url(#vertexGlow);
-          transition: opacity 0.15s ease-in;
+      // ── Match canvas to SVG rendered size ─────────────────────────────────────────
+      const rect = svg.getBoundingClientRect();
+      const W = rect.width;
+      const H = rect.height;
+      canvas.width  = W;
+      canvas.height = H;
+      canvas.style.width  = W + 'px';
+      canvas.style.height = H + 'px';
+      const ctx = canvas.getContext('2d');
+
+      // ── SVG viewBox is 200x180 — scale to actual canvas px ─────────────────────────
+      const SX = W / 200;
+      const SY = H / 180;
+
+      // ── Node definitions ────────────────────────────────────────────────────────────────
+      // vx/vy in SVG viewBox units; isOuter = larger corona + longer beams
+      const NODES = [
+        { vx: 4,   vy: 174, isOuter: true  },  // 0: BL outer
+        { vx: 196, vy: 174, isOuter: true  },  // 1: BR outer
+        { vx: 76,  vy: 155, isOuter: false },  // 2: N4 bot-left inner
+        { vx: 124, vy: 155, isOuter: false },  // 3: N5 bot-right inner
+        { vx: 55,  vy: 120, isOuter: false },  // 4: N2 mid-left
+        { vx: 145, vy: 120, isOuter: false },  // 5: N3 mid-right
+        { vx: 100, vy: 62,  isOuter: false },  // 6: N1 top inner
+        { vx: 100, vy: 4,   isOuter: true  },  // 7: T peak outer
+      ];
+
+      // ── Per-node state ────────────────────────────────────────────────────────────────────
+      const states = NODES.map(() => ({
+        alpha:      0,   // 0–1 overall opacity
+        phase:      'idle', // idle | ignite | hold | fade
+        phaseT:     0,   // ms since phase start
+        beamAlpha:  0,
+        coronaAlpha:0,
+        dotAlpha:   0,
+      }));
+
+      // ── Timing ─────────────────────────────────────────────────────────────────────────────
+      const IGNITE_DUR  = 380;  // ms: beam burst + corona flash
+      const HOLD_DUR    = 520;  // ms: node stays lit
+      const STEP_GAP    = 480;  // ms between each node firing
+      const FADE_DUR    = 1400; // ms: collective fade after all lit
+      const HOLD_AFTER  = 300;  // ms all lit before fade begins
+      const START_DELAY = 600;  // ms after page load
+
+      // Schedule ignition times
+      const ignitionTimes = NODES.map((_, i) => START_DELAY + i * STEP_GAP);
+      const allLitTime    = ignitionTimes[NODES.length - 1] + IGNITE_DUR + HOLD_DUR + HOLD_AFTER;
+
+      // ── Draw helpers ─────────────────────────────────────────────────────────────────────────
+
+      function drawNode(node, state) {
+        const cx = node.vx * SX;
+        const cy = node.vy * SY;
+        const outer = node.isOuter;
+
+        const cA  = state.coronaAlpha;
+        const bA  = state.beamAlpha;
+        const dA  = state.dotAlpha;
+
+        if (cA <= 0.001 && bA <= 0.001 && dA <= 0.001) return;
+
+        // ─ Corona: multi-layer radial glow ─────────────────────────────────────────────────
+        if (cA > 0.001) {
+          const r1 = outer ? 22 : 14;  // outer corona radius
+          const r2 = outer ? 10 : 6;   // inner corona radius
+
+          // Outer soft halo
+          const g1 = ctx.createRadialGradient(cx, cy, 0, cx, cy, r1);
+          g1.addColorStop(0,   `rgba(255,240,200,${0.18 * cA})`);
+          g1.addColorStop(0.3, `rgba(220,180,120,${0.12 * cA})`);
+          g1.addColorStop(1,   `rgba(180,140,80,0)`);
+          ctx.beginPath();
+          ctx.arc(cx, cy, r1, 0, Math.PI * 2);
+          ctx.fillStyle = g1;
+          ctx.fill();
+
+          // Inner bright corona
+          const g2 = ctx.createRadialGradient(cx, cy, 0, cx, cy, r2);
+          g2.addColorStop(0,   `rgba(255,255,240,${0.85 * cA})`);
+          g2.addColorStop(0.4, `rgba(240,210,150,${0.55 * cA})`);
+          g2.addColorStop(1,   `rgba(200,160,80,0)`);
+          ctx.beginPath();
+          ctx.arc(cx, cy, r2, 0, Math.PI * 2);
+          ctx.fillStyle = g2;
+          ctx.fill();
         }
-        .v-halo.lit {
-          opacity: 1;
-        }
-        .v-halo.fading {
-          opacity: 0;
-          transition: opacity ${FADE_DUR}ms ease-out;
-        }
-        .v-node {
-          transition: fill 0.15s ease-in;
-        }
-        .v-node.lit {
-          fill: #F5F5F5;
-        }
-        .v-node.fading {
-          fill: #C9A96E;
-          transition: fill ${FADE_DUR}ms ease-out;
-        }
-      `;
-      document.head.appendChild(style);
 
-      // Fire sequence after a short initial pause (site has loaded)
-      let delay = 400;
+        // ─ Light beams: 4 directional spikes ──────────────────────────────────────────────
+        if (bA > 0.001) {
+          const beamLen  = outer ? 28 : 18;
+          const beamW    = outer ? 1.8 : 1.2;
+          // 4 beams: up, down, left, right
+          const angles = [0, Math.PI/2, Math.PI, Math.PI*3/2];
 
-      sequence.forEach((haloId, i) => {
-        const nodeId = nodeIds[i];
+          angles.forEach(angle => {
+            const ex = cx + Math.cos(angle) * beamLen;
+            const ey = cy + Math.sin(angle) * beamLen;
 
-        // Light up this node
-        setTimeout(() => {
-          const halo = document.getElementById(haloId);
-          const node = document.getElementById(nodeId);
-          if (halo) halo.classList.add('lit');
-          if (node) node.classList.add('lit');
-        }, delay);
+            const bg = ctx.createLinearGradient(cx, cy, ex, ey);
+            bg.addColorStop(0,   `rgba(255,248,220,${0.9 * bA})`);
+            bg.addColorStop(0.3, `rgba(240,210,150,${0.6 * bA})`);
+            bg.addColorStop(1,   `rgba(200,160,80,0)`);
 
-        delay += STEP_DELAY;
-      });
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.lineTo(ex, ey);
+            ctx.strokeStyle = bg;
+            ctx.lineWidth   = beamW;
+            ctx.lineCap     = 'round';
+            ctx.stroke();
+          });
 
-      // After last node lights up, wait then fade all out together
-      const fadeStart = delay + FADE_DELAY;
-      setTimeout(() => {
-        sequence.forEach((haloId, i) => {
-          const halo = document.getElementById(haloId);
-          const node = document.getElementById(nodeIds[i]);
-          if (halo) { halo.classList.remove('lit'); halo.classList.add('fading'); }
-          if (node) { node.classList.remove('lit'); node.classList.add('fading'); }
+          // Diagonal secondary beams (shorter, subtler)
+          const diagLen = beamLen * 0.55;
+          const diagAngles = [Math.PI/4, Math.PI*3/4, Math.PI*5/4, Math.PI*7/4];
+          diagAngles.forEach(angle => {
+            const ex = cx + Math.cos(angle) * diagLen;
+            const ey = cy + Math.sin(angle) * diagLen;
+            const bg = ctx.createLinearGradient(cx, cy, ex, ey);
+            bg.addColorStop(0,   `rgba(255,240,180,${0.45 * bA})`);
+            bg.addColorStop(1,   `rgba(200,160,80,0)`);
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.lineTo(ex, ey);
+            ctx.strokeStyle = bg;
+            ctx.lineWidth   = beamW * 0.6;
+            ctx.lineCap     = 'round';
+            ctx.stroke();
+          });
+        }
+
+        // ─ Core dot: bright white center ─────────────────────────────────────────────────────
+        if (dA > 0.001) {
+          const dr = outer ? 3.5 : 2.5;
+          const dg = ctx.createRadialGradient(cx, cy, 0, cx, cy, dr);
+          dg.addColorStop(0,   `rgba(255,255,255,${dA})`);
+          dg.addColorStop(0.5, `rgba(255,245,200,${0.7 * dA})`);
+          dg.addColorStop(1,   `rgba(220,180,100,0)`);
+          ctx.beginPath();
+          ctx.arc(cx, cy, dr, 0, Math.PI * 2);
+          ctx.fillStyle = dg;
+          ctx.fill();
+        }
+      }
+
+      // ── Easing ───────────────────────────────────────────────────────────────────────────────
+      const easeOut  = t => 1 - Math.pow(1 - t, 3);
+      const easeIn   = t => t * t * t;
+      const easeInOut= t => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2;
+
+      // ── Animation loop ───────────────────────────────────────────────────────────────────────────
+      let startTime = null;
+      let done = false;
+
+      function tick(ts) {
+        if (done) return;
+        if (!startTime) startTime = ts;
+        const elapsed = ts - startTime;
+
+        ctx.clearRect(0, 0, W, H);
+
+        let allFading = elapsed >= allLitTime;
+        let fadeT = allFading ? Math.min((elapsed - allLitTime) / FADE_DUR, 1) : 0;
+        let globalAlpha = allFading ? easeIn(1 - fadeT) : 1;
+
+        NODES.forEach((node, i) => {
+          const st = states[i];
+          const ignT = ignitionTimes[i];
+          const nodeElapsed = elapsed - ignT;
+
+          if (nodeElapsed < 0) return; // not yet fired
+
+          let coronaA = 0, beamA = 0, dotA = 0;
+
+          if (!allFading) {
+            if (nodeElapsed < IGNITE_DUR) {
+              // Ignite phase: beam bursts in fast, corona blooms
+              const t = nodeElapsed / IGNITE_DUR;
+              beamA   = easeOut(t) * (1 - t * 0.3);  // peaks early, slight decay
+              coronaA = easeOut(t);
+              dotA    = easeOut(t);
+            } else {
+              // Hold phase: beams fade, corona + dot stay
+              const holdT = Math.min((nodeElapsed - IGNITE_DUR) / HOLD_DUR, 1);
+              beamA   = Math.max(0, 1 - holdT * 2.5); // beams fade quickly
+              coronaA = 0.7 + 0.15 * Math.sin(holdT * Math.PI * 2); // gentle pulse
+              dotA    = 1;
+            }
+          } else {
+            // Global fade
+            beamA   = 0;
+            coronaA = globalAlpha * 0.7;
+            dotA    = globalAlpha;
+          }
+
+          st.beamAlpha   = beamA;
+          st.coronaAlpha = coronaA;
+          st.dotAlpha    = dotA;
+
+          drawNode(node, st);
         });
-      }, fadeStart);
+
+        if (allFading && fadeT >= 1) {
+          ctx.clearRect(0, 0, W, H);
+          done = true;
+          return;
+        }
+
+        requestAnimationFrame(tick);
+      }
+
+      requestAnimationFrame(tick);
 
     })();
   </script>
