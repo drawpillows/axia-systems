@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Partner With Us | AXIA Systems</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --onyx:        #0F0F0F;
+      --onyx-mid:    #141414;
+      --onyx-card:   #111111;
+      --gunmetal:    #2C2C2C;
+      --gunmetal-lt: #3A3A3A;
+      --cloud:       #F5F5F5;
+      --cloud-dim:   #ABABAB;
+      --cloud-mute:  #666666;
+      --gold:        #C9A96E;
+      --gold-dim:    #8A6F42;
+      --serif:       'Cinzel', serif;
+      --sans:        'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--onyx);
+      color: var(--cloud);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--onyx); }
+    ::-webkit-scrollbar-thumb { background: var(--gunmetal); border-radius: 2px; }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    }
+
+    /* ── Navigation ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 30px 64px;
+      transition: background 0.5s ease, padding 0.4s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(11,11,11,0.97);
+      padding: 20px 64px;
+      border-bottom: 1px solid var(--gunmetal);
+      backdrop-filter: blur(10px);
+    }
+
+    nav.scrolled ~ .menu-dropdown { top: 62px; }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo-img {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 6px rgba(201,169,110,0.25));
+      transition: filter 0.4s ease;
+    }
+
+    .nav-logo:hover .nav-logo-img {
+      filter: drop-shadow(0 0 10px rgba(201,169,110,0.5));
+    }
+
+    .nav-logo-text {
+      font-family: var(--serif);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      color: var(--cloud);
+      text-transform: uppercase;
+    }
+
+    .nav-cities {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.45em;
+      color: rgba(245,245,245,0.3);
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    .nav-hamburger {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 6px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: var(--gold-dim);
+      transition: background 0.3s, transform 0.3s, opacity 0.3s;
+    }
+
+    .nav-hamburger:hover span { background: var(--gold); }
+
+    .nav-hamburger.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-hamburger.active span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    .menu-dropdown {
+      position: fixed;
+      top: 80px;
+      right: 0;
+      width: 260px;
+      background: rgba(11,11,11,0.98);
+      backdrop-filter: blur(20px);
+      border-left: 1px solid var(--gunmetal);
+      border-bottom: 1px solid var(--gunmetal);
+      z-index: 490;
+      display: flex;
+      flex-direction: column;
+      padding: 32px 40px 40px;
+      gap: 4px;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .menu-dropdown.open { transform: translateX(0); }
+
+    .menu-item {
+      font-family: var(--serif);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      color: rgba(245,245,245,0.4);
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: color 0.3s;
+    }
+
+    .menu-item:last-child { border-bottom: none; }
+    .menu-item:hover { color: var(--cloud); }
+    .menu-item.active { color: var(--gold); }
+
+    /* ── Page Header ── */
+    .page-header {
+      padding: 180px 64px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--gunmetal);
+    }
+
+    .page-eyebrow {
+      font-family: var(--serif);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .page-title {
+      font-family: var(--serif);
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--cloud);
+      text-transform: uppercase;
+      line-height: 1.05;
+    }
+
+    .page-subtitle {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--cloud-mute);
+      letter-spacing: 0.06em;
+      margin-top: 24px;
+      max-width: 560px;
+    }
+
+    /* ── Content Sections ── */
+    .content-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 64px;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      margin-bottom: 80px;
+      padding-bottom: 80px;
+      border-bottom: 1px solid var(--gunmetal);
+    }
+
+    .content-grid:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .content-eyebrow {
+      font-family: var(--serif);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .content-heading {
+      font-family: var(--serif);
+      font-size: clamp(24px, 3vw, 38px);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--cloud);
+      text-transform: uppercase;
+      line-height: 1.15;
+      margin-bottom: 28px;
+    }
+
+    .content-rule {
+      width: 36px;
+      height: 1px;
+      background: var(--gold-dim);
+      margin-bottom: 28px;
+    }
+
+    .content-body {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--cloud-dim);
+    }
+
+    .content-body p {
+      margin-bottom: 18px;
+    }
+
+    .content-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── Protocol Cards ── */
+    .protocol-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .protocol-card {
+      background: var(--onyx-card);
+      padding: 40px 36px;
+      border: 1px solid var(--gunmetal);
+    }
+
+    .protocol-num {
+      font-family: var(--serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      color: var(--gold-dim);
+      margin-bottom: 16px;
+    }
+
+    .protocol-title {
+      font-family: var(--serif);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--cloud);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+
+    .protocol-desc {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--cloud-mute);
+    }
+
+    /* ── Full-width Statement ── */
+    .statement-wrap {
+      background: var(--onyx-mid);
+      border-top: 1px solid var(--gunmetal);
+      border-bottom: 1px solid var(--gunmetal);
+      padding: 100px 64px;
+      text-align: center;
+    }
+
+    .statement-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .statement-eyebrow {
+      font-family: var(--serif);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .statement-heading {
+      font-family: var(--serif);
+      font-size: clamp(26px, 3.5vw, 44px);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--cloud);
+      text-transform: uppercase;
+      line-height: 1.15;
+      margin-bottom: 32px;
+    }
+
+    .statement-body {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--cloud-dim);
+      margin-bottom: 20px;
+    }
+
+    .statement-close {
+      font-family: var(--serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      margin-top: 40px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--onyx-mid);
+      border-top: 1px solid var(--gunmetal);
+    }
+
+    .footer-main {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      padding: 80px 64px 60px;
+    }
+
+    .footer-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .footer-logo-img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      opacity: 0.7;
+    }
+
+    .footer-brand {
+      font-family: var(--serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      color: var(--cloud-dim);
+      text-transform: uppercase;
+    }
+
+    .footer-tagline {
+      font-family: var(--serif);
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .footer-disclosure {
+      font-size: 12px;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--cloud-mute);
+      max-width: 360px;
+    }
+
+    .footer-col-label {
+      font-family: var(--serif);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hub-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .hub-name {
+      font-family: var(--serif);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      color: var(--cloud);
+      text-transform: uppercase;
+    }
+
+    .hub-note {
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      color: var(--cloud-mute);
+      margin-top: 3px;
+    }
+
+    .footer-op-note {
+      font-size: 11px;
+      font-style: italic;
+      color: #4A4A4A;
+      margin-top: 24px;
+      line-height: 1.7;
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 64px 40px;
+      border-top: 1px solid var(--gunmetal);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-legal {
+      font-size: 11px;
+      color: #444;
+      letter-spacing: 0.08em;
+    }
+
+    .footer-portfolio-tag {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: #3A3A3A;
+      text-transform: uppercase;
+    }
+
+    .footer-portfolio-tag span { color: var(--gold-dim); }
+
+    /* ── Responsive ── */
+    @media (max-width: 960px) {
+      nav { padding: 24px 32px; }
+      nav.scrolled { padding: 18px 32px; }
+      .page-header { padding: 140px 32px 60px; }
+      .content-wrap { padding: 60px 32px; }
+      .content-grid { grid-template-columns: 1fr; gap: 40px; }
+      .protocol-grid { grid-template-columns: 1fr; }
+      .statement-wrap { padding: 60px 32px; }
+      .footer-main { grid-template-columns: 1fr; gap: 44px; padding: 60px 32px 40px; }
+      .footer-bottom { padding: 20px 32px 36px; flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav id="mainNav">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="AXIA Systems" class="nav-logo-img" />
+      <span class="nav-logo-text">AXIA Systems</span>
+    </a>
+    <p class="nav-cities">Chicago &nbsp;&nbsp;•&nbsp;&nbsp; Miami &nbsp;&nbsp;•&nbsp;&nbsp; Dubai</p>
+    <button class="nav-hamburger" id="menuToggle" onclick="toggleMenu()" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ── Page Header ── -->
+  <header class="page-header">
+    <p class="page-eyebrow">The Engagement Model</p>
+    <h1 class="page-title">Partner<br>With Us</h1>
+    <p class="page-subtitle">High yield. Low volume. One organization per niche per market.</p>
+  </header>
+
+  <!-- ── Content ── -->
+  <div class="content-wrap">
+
+    <!-- Built Around You -->
+    <div class="content-grid">
+      <div>
+        <p class="content-eyebrow">The Difference</p>
+        <h2 class="content-heading">Built Around<br>Your Operation.</h2>
+        <div class="content-rule"></div>
+        <div class="content-body">
+          <p>AXIA is not a software subscription. We do not hand you a login and a tutorial and leave you to figure out the rest. We come to your office, learn how your operation actually runs from the first point of contact to the final client interaction, and build a custom intelligence layer around your existing process.</p>
+          <p>Nothing is ripped out and replaced. Everything is connected, automated, and optimized around the way your organization already works. Your staff adapts to nothing. Your clients feel everything.</p>
+          <p>Every system we build is designed from scratch for the organization it serves. No templates. No off-the-shelf solutions. No compromises.</p>
+        </div>
+      </div>
+      <div>
+        <p class="content-eyebrow">The Protocol</p>
+        <h2 class="content-heading">How We<br>Engage.</h2>
+        <div class="content-rule"></div>
+        <div class="protocol-grid">
+          <div class="protocol-card">
+            <p class="protocol-num">01</p>
+            <p class="protocol-title">Discovery</p>
+            <p class="protocol-desc">We map your entire operation. Every touchpoint. Every process. Every gap.</p>
+          </div>
+          <div class="protocol-card">
+            <p class="protocol-num">02</p>
+            <p class="protocol-title">Architecture</p>
+            <p class="protocol-desc">We design a custom intelligence layer built specifically around how you operate.</p>
+          </div>
+          <div class="protocol-card">
+            <p class="protocol-num">03</p>
+            <p class="protocol-title">Implementation</p>
+            <p class="protocol-desc">We build and deploy. Your team is trained. Your systems go live.</p>
+          </div>
+          <div class="protocol-card">
+            <p class="protocol-num">04</p>
+            <p class="protocol-title">Evolution</p>
+            <p class="protocol-desc">Monthly on-site audits. Continuous upgrades. Permanent operational improvement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- People First -->
+    <div class="content-grid">
+      <div>
+        <p class="content-eyebrow">The Philosophy</p>
+        <h2 class="content-heading">Empowering<br>Your People.</h2>
+        <div class="content-rule"></div>
+        <div class="content-body">
+          <p>Our systems are not designed to replace your staff. They are built to elevate them. By removing manual data entry, repetitive administrative tasks, and the operational drag that consumes hours every day, we free your team to focus entirely on what they do best: delivering an exceptional, high-touch client experience.</p>
+          <p>Automation handles the process. Your people handle the relationship. That is the standard we build toward.</p>
+          <p>From the moment a client enters your ecosystem to the end of their lifecycle with your organization, every interaction is designed to feel personal, seamless, and intentional.</p>
+        </div>
+      </div>
+      <div>
+        <p class="content-eyebrow">The Standard</p>
+        <h2 class="content-heading">One Per<br>Market.</h2>
+        <div class="content-rule"></div>
+        <div class="content-body">
+          <p>We do not take on every organization that approaches us. We limit our roster intentionally to preserve the standard of execution our partners expect.</p>
+          <p>We accept only one partner per niche per market. If we are building the infrastructure for your dominance, we will not build it for your competitor. That is not a policy. It is a commitment.</p>
+          <p>Privacy, professionalism, and unyielding quality are the pillars of every engagement. We stay at the frontier of operational technology so you never have to.</p>
+          <p>New partnerships are accepted by invitation or referral only.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Closing Statement ── -->
+  <div class="statement-wrap">
+    <div class="statement-inner">
+      <p class="statement-eyebrow">The Long Game</p>
+      <h2 class="statement-heading">We Are In Your<br>Office Every Month.</h2>
+      <p class="statement-body">A partnership with AXIA is not a one-time handoff. It is a continuous operational evolution. We conduct monthly on-site audits to identify new friction points, ensure your staff is fully utilizing every system, close any lingering gaps, and upgrade the architecture before it becomes obsolete.</p>
+      <p class="statement-body">Long-standing dominance requires consistent, compounding effort. We bring the same intensity to month twenty-four that we brought to day one.</p>
+      <p class="statement-close">We manage the systems. You manage the organization.</p>
+    </div>
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <div class="footer-main">
+      <div>
+        <div class="footer-logo-wrap">
+          <img src="logo.png" alt="AXIA Systems" class="footer-logo-img" />
+          <p class="footer-brand">AXIA Systems</p>
+        </div>
+        <p class="footer-tagline">Systems Intelligence</p>
+        <p class="footer-disclosure">
+          A Mirza Minds portfolio company. All engagements are held under permanent non-disclosure. Client identities are never published.
+        </p>
+      </div>
+      <div>
+        <p class="footer-col-label">Global Hubs</p>
+        <div class="hub-list">
+          <div>
+            <p class="hub-name">Chicago</p>
+            <p class="hub-note">North American Headquarters</p>
+          </div>
+          <div>
+            <p class="hub-name">Miami</p>
+            <p class="hub-note">Southeast Operations</p>
+          </div>
+          <div>
+            <p class="hub-name">Dubai</p>
+            <p class="hub-note">International Operations</p>
+          </div>
+        </div>
+        <p class="footer-op-note">Private Offices. Appointment Only.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-legal">© 2026 AXIA Systems Ltd. &nbsp;|&nbsp; All Rights Reserved.</p>
+      <p class="footer-portfolio-tag">A <span>Mirza Minds</span> Portfolio Company</p>
+    </div>
+  </footer>
+
+  <!-- ── Nav Dropdown ── -->
+  <div class="menu-dropdown" id="menuOverlay">
+    <a href="index.html" class="menu-item" onclick="toggleMenu()">Home</a>
+    <a href="founders.html" class="menu-item" onclick="toggleMenu()">The Founders</a>
+    <a href="index.html#competencies" class="menu-item" onclick="toggleMenu()">The Systems</a>
+    <a href="index.html#selection" class="menu-item" onclick="toggleMenu()">The Standard</a>
+    <a href="partner.html" class="menu-item active" onclick="toggleMenu()">Partner With Us</a>
+  </div>
+
+  <script>
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    function toggleMenu() {
+      const isOpen = menuOverlay.classList.toggle('open');
+      document.getElementById('menuToggle').classList.toggle('active', isOpen);
+    }
+
+    document.addEventListener('click', (e) => {
+      if (menuOverlay.classList.contains('open') &&
+          !menuOverlay.contains(e.target) &&
+          e.target !== document.getElementById('menuToggle') &&
+          !document.getElementById('menuToggle').contains(e.target)) {
+        toggleMenu();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuOverlay.classList.contains('open')) toggleMenu();
+    });
+  </script>
+</body>
+</html>
