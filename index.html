@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AXIA Systems | Elite Systems Intelligence</title>
+  <meta name="description" content="AXIA Systems — Elite Systems Intelligence. Access by invitation or hand-selection only. Chicago • Miami • Dubai." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset ───────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --onyx:        #0F0F0F;
+      --onyx-mid:    #141414;
+      --onyx-card:   #111111;
+      --gunmetal:    #2C2C2C;
+      --gunmetal-lt: #3A3A3A;
+      --cloud:       #F5F5F5;
+      --cloud-dim:   #ABABAB;
+      --cloud-mute:  #666666;
+      --gold:        #C9A96E;
+      --gold-dim:    #8A6F42;
+      --serif:       'Cinzel', serif;
+      --sans:        'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--onyx);
+      color: var(--cloud);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--onyx); }
+    ::-webkit-scrollbar-thumb { background: var(--gunmetal); border-radius: 2px; }
+
+    /* ── Grain Overlay ───────────────────────────────────────── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    }
+
+    /* ── Navigation ──────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 30px 64px;
+      transition: background 0.5s ease, padding 0.4s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(11,11,11,0.97);
+      padding: 20px 64px;
+      border-bottom: 1px solid var(--gunmetal);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo-img {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 6px rgba(201,169,110,0.25));
+      transition: filter 0.4s ease;
+    }
+
+    .nav-logo:hover .nav-logo-img {
+      filter: drop-shadow(0 0 10px rgba(201,169,110,0.5));
+    }
+
+    .nav-logo-text {
+      font-family: var(--serif);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      color: var(--cloud);
+      text-transform: uppercase;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      color: var(--cloud-mute);
+      text-transform: uppercase;
+    }
+
+    .nav-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: var(--cloud-dim);
+      text-transform: uppercase;
+    }
+
+    .status-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: blink 2.8s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* ── Hero ────────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 48px 100px;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('hero-bg.jpg') center 40% / cover no-repeat;
+      filter: blur(4px) brightness(0.18) saturate(0.5);
+      transform: scale(1.06);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 50%, transparent 20%, rgba(15,15,15,0.7) 80%),
+        linear-gradient(to bottom, rgba(15,15,15,0.3) 0%, transparent 30%, transparent 70%, rgba(15,15,15,0.9) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .hero-logo-mark {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      margin: 0 auto 32px;
+      display: block;
+      filter: drop-shadow(0 0 18px rgba(201,169,110,0.3));
+
+    }
+
+    .hero-eyebrow {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.55em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(60px, 9vw, 110px);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--cloud);
+      line-height: 1;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+
+    }
+
+    .hero-rule {
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 0 auto 24px;
+
+    }
+
+    .hero-sub {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.5em;
+      color: var(--cloud-dim);
+      text-transform: uppercase;
+      margin-bottom: 64px;
+
+    }
+
+    .hero-gate {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.95;
+      color: var(--cloud-dim);
+      max-width: 520px;
+      margin: 0 auto 56px;
+      border-left: 1px solid var(--gold-dim);
+      padding-left: 24px;
+      text-align: left;
+
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      font-family: var(--serif);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      color: var(--cloud);
+      text-transform: uppercase;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 18px 48px;
+      cursor: pointer;
+      transition: border-color 0.4s, color 0.4s, transform 0.3s;
+      position: relative;
+      overflow: hidden;
+
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(201,169,110,0.07), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .btn-primary:hover {
+      border-color: var(--gold-dim);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .btn-primary:hover::before { opacity: 1; }
+
+    .btn-arrow {
+      display: inline-block;
+      width: 18px;
+      height: 1px;
+      background: currentColor;
+      position: relative;
+      transition: width 0.3s;
+    }
+
+    .btn-arrow::after {
+      content: '';
+      position: absolute;
+      right: 0; top: -3px;
+      width: 7px; height: 7px;
+      border-top: 1px solid currentColor;
+      border-right: 1px solid currentColor;
+      transform: rotate(45deg);
+    }
+
+    .btn-primary:hover .btn-arrow { width: 28px; }
+
+    .hero-scroll-indicator {
+      position: absolute;
+      bottom: 44px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+
+    }
+
+    .scroll-track {
+      width: 1px;
+      height: 52px;
+      background: linear-gradient(to bottom, var(--gold-dim), transparent);
+      animation: scrollDrop 2.2s ease-in-out infinite;
+    }
+
+    @keyframes scrollDrop {
+      0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+      45%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+      55%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+      100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+    }
+
+    .scroll-text {
+      font-size: 8px;
+      letter-spacing: 0.45em;
+      color: var(--cloud-mute);
+      text-transform: uppercase;
+    }
+
+    /* animations removed — static load */
+
+    /* ── Section Wrapper ─────────────────────────────────────── */
+    .section-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 64px;
+    }
+
+    .section-eyebrow {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.55em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .section-heading {
+      font-family: var(--serif);
+      font-size: clamp(26px, 3vw, 42px);
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--cloud);
+      text-transform: uppercase;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .section-rule {
+      width: 36px;
+      height: 1px;
+      background: var(--gold-dim);
+      margin-bottom: 56px;
+    }
+
+    /* ── Competencies ────────────────────────────────────────── */
+    .competencies-wrap {
+      border-top: 1px solid var(--gunmetal);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--gunmetal);
+      gap: 1px;
+      background: var(--gunmetal);
+    }
+
+    .card {
+      background: var(--onyx-card);
+      padding: 52px 40px 56px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s;
+      opacity: 1;
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .card:hover { background: #131313; }
+    .card:hover::after { opacity: 1; }
+
+    .card-num {
+      font-family: var(--serif);
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      color: var(--gold-dim);
+      margin-bottom: 28px;
+    }
+
+    .card-title {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--cloud);
+      text-transform: uppercase;
+      line-height: 1.45;
+      margin-bottom: 20px;
+    }
+
+    .card-body {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--cloud-dim);
+    }
+
+    /* ── Quote Interlude ─────────────────────────────────────── */
+    .interlude {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .interlude-bg {
+      position: absolute;
+      inset: 0;
+      background: url('watch-bg.jpg') center / cover no-repeat;
+      filter: blur(3px) brightness(0.12) saturate(0.3);
+      transform: scale(1.04);
+    }
+
+    .interlude-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(15,15,15,0.5), rgba(15,15,15,0.5));
+    }
+
+    .interlude-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 110px 64px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .interlude-mark {
+      font-family: var(--serif);
+      font-size: 48px;
+      color: var(--gold-dim);
+      line-height: 0.5;
+      margin-bottom: 28px;
+      opacity: 0.5;
+    }
+
+    .interlude-quote {
+      font-family: var(--serif);
+      font-size: clamp(18px, 2.2vw, 26px);
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--cloud);
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+
+    .interlude-attr {
+      font-size: 9px;
+      letter-spacing: 0.45em;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+    }
+
+    /* ── Vetting ─────────────────────────────────────────────── */
+    .vetting-wrap {
+      border-top: 1px solid var(--gunmetal);
+      border-bottom: 1px solid var(--gunmetal);
+    }
+
+    .vetting-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.8fr;
+      gap: 100px;
+      align-items: start;
+    }
+
+    .vetting-tags {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .vtag {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: var(--cloud-mute);
+      text-transform: uppercase;
+    }
+
+    .vtag::before {
+      content: '\2022';
+      color: var(--gold-dim);
+      font-size: 8px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .vetting-statement {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 2.05;
+      color: var(--cloud-dim);
+      border-left: 1px solid var(--gold-dim);
+      padding-left: 32px;
+    }
+
+    .vetting-statement strong {
+      color: var(--cloud);
+      font-weight: 500;
+    }
+
+    /* ── Footer ──────────────────────────────────────────────── */
+    footer {
+      background: var(--onyx-mid);
+      border-top: 1px solid var(--gunmetal);
+    }
+
+    .footer-main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 64px 56px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.2fr;
+      gap: 64px;
+    }
+
+    .footer-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+
+    .footer-logo-img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      opacity: 0.85;
+    }
+
+    .footer-brand {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      color: var(--cloud);
+      text-transform: uppercase;
+    }
+
+    .footer-tagline {
+      font-size: 9px;
+      letter-spacing: 0.35em;
+      color: var(--cloud-mute);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .footer-disclosure {
+      font-size: 12px;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--cloud-mute);
+      max-width: 360px;
+    }
+
+    .footer-col-label {
+      font-family: var(--serif);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hub-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .hub-name {
+      font-family: var(--serif);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      color: var(--cloud);
+      text-transform: uppercase;
+    }
+
+    .hub-note {
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      color: var(--cloud-mute);
+      margin-top: 3px;
+    }
+
+    .footer-op-note {
+      font-size: 11px;
+      font-style: italic;
+      color: #4A4A4A;
+      margin-top: 24px;
+      line-height: 1.7;
+    }
+
+    .footer-access-text {
+      font-size: 12px;
+      font-weight: 300;
+      line-height: 1.9;
+      color: #555;
+      margin-bottom: 28px;
+    }
+
+    .btn-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--serif);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      color: var(--cloud-dim);
+      text-transform: uppercase;
+      background: transparent;
+      border: 1px solid var(--gunmetal);
+      padding: 14px 28px;
+      cursor: pointer;
+      transition: border-color 0.4s, color 0.4s;
+    }
+
+    .btn-sm:hover {
+      border-color: var(--gold-dim);
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 64px 40px;
+      border-top: 1px solid var(--gunmetal);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-legal {
+      font-size: 11px;
+      color: #444;
+      letter-spacing: 0.08em;
+    }
+
+    .footer-portfolio-tag {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: #3A3A3A;
+      text-transform: uppercase;
+    }
+
+    .footer-portfolio-tag span { color: var(--gold-dim); }
+
+    /* ── Modal ───────────────────────────────────────────────── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(8,8,8,0.94);
+      backdrop-filter: blur(14px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.45s ease;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-box {
+      background: var(--onyx-mid);
+      border: 1px solid var(--gunmetal);
+      width: 100%;
+      max-width: 540px;
+      padding: 60px 56px;
+      position: relative;
+      transform: translateY(24px);
+      transition: transform 0.45s ease;
+    }
+
+    .modal-overlay.open .modal-box {
+      transform: translateY(0);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 22px; right: 22px;
+      background: none;
+      border: none;
+      color: var(--cloud-mute);
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 6px 10px;
+      transition: color 0.3s;
+    }
+
+    .modal-close-btn:hover { color: var(--cloud); }
+
+    .modal-eyebrow {
+      font-size: 8px;
+      letter-spacing: 0.55em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .modal-title {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      color: var(--cloud);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .modal-desc {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--cloud-mute);
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+
+    .modal-divider {
+      height: 1px;
+      background: var(--gunmetal);
+      margin-bottom: 36px;
+    }
+
+    .field {
+      margin-bottom: 28px;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 0.45em;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .field-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--gunmetal);
+      padding: 11px 0;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--cloud);
+      outline: none;
+      transition: border-color 0.3s;
+      letter-spacing: 0.04em;
+    }
+
+    .field-input::placeholder { color: #3A3A3A; }
+    .field-input:focus { border-bottom-color: var(--gold-dim); }
+
+    .btn-submit {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--gunmetal-lt);
+      padding: 18px;
+      font-family: var(--serif);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      color: var(--cloud);
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: border-color 0.4s, color 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(201,169,110,0.08), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .btn-submit:hover { border-color: var(--gold-dim); color: var(--gold); }
+    .btn-submit:hover::before { opacity: 1; }
+    .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Success */
+    .modal-success {
+      display: none;
+      text-align: center;
+      padding: 16px 0;
+    }
+
+    .success-ring {
+      width: 52px; height: 52px;
+      border: 1px solid var(--gold-dim);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+      color: var(--gold);
+      font-size: 20px;
+    }
+
+    .success-heading {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: var(--cloud);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .success-body {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.95;
+      color: var(--cloud-dim);
+    }
+
+    .success-note {
+      display: block;
+      margin-top: 20px;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: #444;
+    }
+
+    /* ── Responsive ──────────────────────────────────────────── */
+    @media (max-width: 960px) {
+      nav { padding: 24px 32px; }
+      nav.scrolled { padding: 18px 32px; }
+      .nav-label { display: none; }
+      .section-wrap { padding: 80px 32px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .vetting-grid { grid-template-columns: 1fr; gap: 48px; }
+      .footer-main { grid-template-columns: 1fr; gap: 44px; padding: 60px 32px 40px; }
+      .footer-bottom { padding: 20px 32px 36px; flex-direction: column; gap: 12px; text-align: center; }
+      .modal-box { padding: 40px 28px; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-title { letter-spacing: 0.1em; }
+      .hero-gate { padding-left: 16px; }
+      .interlude-content { padding: 80px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ────────────────────────────────────────── -->
+  <nav id="mainNav">
+    <a href="#" class="nav-logo">
+      <img src="logo.png" alt="AXIA Systems" class="nav-logo-img" />
+      <span class="nav-logo-text">AXIA Systems</span>
+    </a>
+    <div class="nav-right">
+      <div class="nav-status">
+        <div class="status-dot"></div>
+        <span>Operational</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Hero ──────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <img src="logo-hero.png" alt="AXIA Systems Logo" class="hero-logo-mark" />
+      <p class="hero-eyebrow">A Mirza Minds Portfolio Company</p>
+      <h1 class="hero-title">AXIA<br>Systems</h1>
+      <div class="hero-rule"></div>
+      <p class="hero-sub">Elite Systems Intelligence &nbsp;|&nbsp; Chicago &nbsp;•&nbsp; Miami &nbsp;•&nbsp; Dubai</p>
+      <p class="hero-gate">
+        Access to the AXIA Systems Intelligence Layer is strictly by invitation or hand-selection. We do not accept public solicitations.
+      </p>
+      <button class="btn-primary" onclick="openModal()">
+        Validate Briefing ID
+        <span class="btn-arrow"></span>
+      </button>
+    </div>
+
+  </section>
+
+  <!-- ── Core Competencies ──────────────────────────────────── -->
+  <div class="competencies-wrap">
+    <div class="section-wrap">
+      <p class="section-eyebrow">Intelligence Architecture</p>
+      <h2 class="section-heading">Core Competencies</h2>
+      <div class="section-rule"></div>
+      <div class="cards-grid">
+        <div class="card reveal">
+          <p class="card-num">01</p>
+          <h3 class="card-title">Systemic Architecture<br>Audit</h3>
+          <p class="card-body">We map the operational landscape of elite firms to identify structural gaps. This ensures your growth never outpaces your infrastructure.</p>
+        </div>
+        <div class="card reveal">
+          <p class="card-num">02</p>
+          <h3 class="card-title">Silent Yield<br>Optimization</h3>
+          <p class="card-body">We locate invisible friction points in your workflow. We stop the quiet loss of revenue caused by disconnected systems and legacy dependencies.</p>
+        </div>
+        <div class="card reveal">
+          <p class="card-num">03</p>
+          <h3 class="card-title">Technological<br>Sovereignty</h3>
+          <p class="card-body">We manage the frontier of AI and automation for you. Our partners operate at the apex of their discipline without the burden of technical complexity.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Quote Interlude ────────────────────────────────────── -->
+  <div class="interlude">
+    <div class="interlude-bg"></div>
+    <div class="interlude-overlay"></div>
+    <div class="interlude-content reveal">
+      <div class="interlude-mark">"</div>
+      <p class="interlude-quote">Precision is not a feature.<br>It is the only acceptable standard.</p>
+      <p class="interlude-attr">AXIA Systems &nbsp;—&nbsp; Intelligence Division</p>
+    </div>
+  </div>
+
+  <!-- ── Vetting Statement ──────────────────────────────────── -->
+  <div class="vetting-wrap">
+    <div class="section-wrap">
+      <div class="vetting-grid">
+        <div>
+          <p class="section-eyebrow">The Mirza Selection Standard</p>
+          <h2 class="section-heading">The Selection<br>Standard</h2>
+          <div class="section-rule"></div>
+          <div class="vetting-tags reveal">
+            <div class="vtag">Elite Benchmarking</div>
+            <div class="vtag">Private Referral Network</div>
+            <div class="vtag">Institutional Discretion</div>
+            <div class="vtag">Strategic Intelligence Briefing</div>
+          </div>
+        </div>
+        <div>
+          <p class="vetting-statement reveal">
+            <strong>AXIA Systems is a private portfolio company of Mirza Minds.</strong> Our partners are identified through a rigorous signature selection process. If you have received a physical intelligence briefing, your firm has been pre-selected for potential optimization.<br><br>
+            We do not publish client identities or case studies. Due to the high-profile status of our elite roster, all engagements operate under strict non-disclosure protocols. The integrity of our partners' competitive advantage is non-negotiable.<br><br>
+            <strong>Engagement with AXIA Systems is not purchased. It is earned through selection.</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Footer ────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-main">
+      <div>
+        <div class="footer-logo-wrap">
+          <img src="logo.png" alt="AXIA Systems" class="footer-logo-img" />
+          <p class="footer-brand">AXIA Systems</p>
+        </div>
+        <p class="footer-tagline">Elite Systems Intelligence</p>
+        <p class="footer-disclosure">
+          As a Mirza Minds portfolio company, AXIA Systems operates under strict non-disclosure protocols. Due to the high-profile status of our elite roster, we do not publish client identities or case studies. Referral or Selection Only.
+        </p>
+      </div>
+      <div>
+        <p class="footer-col-label">Global Hubs</p>
+        <div class="hub-list">
+          <div>
+            <p class="hub-name">Chicago</p>
+            <p class="hub-note">North American Headquarters</p>
+          </div>
+          <div>
+            <p class="hub-name">Miami</p>
+            <p class="hub-note">Southeast Operations</p>
+          </div>
+          <div>
+            <p class="hub-name">Dubai</p>
+            <p class="hub-note">International Operations</p>
+          </div>
+        </div>
+        <p class="footer-op-note">Private Offices — Accessible by Appointment Only.</p>
+      </div>
+      <div>
+        <p class="footer-col-label">Access Protocol</p>
+        <p class="footer-access-text">
+          Engagements are initiated exclusively through the AXIA Intelligence Briefing system. If you have been selected, your Briefing ID will have been delivered through a verified Mirza Minds channel.
+        </p>
+        <button class="btn-sm" onclick="openModal()">
+          Validate Briefing ID
+          <span class="btn-arrow"></span>
+        </button>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-legal">© 2026 AXIA Systems Ltd. &nbsp;|&nbsp; All Rights Reserved.</p>
+      <p class="footer-portfolio-tag">A <span>Mirza Minds</span> Portfolio Company</p>
+    </div>
+  </footer>
+
+  <!-- ── Modal ─────────────────────────────────────────────── -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box" id="modalBox">
+      <button class="modal-close-btn" onclick="closeModal()" aria-label="Close">&times;</button>
+
+      <!-- Form -->
+      <div id="formState">
+        <p class="modal-eyebrow">Intelligence Access Protocol</p>
+        <h2 class="modal-title">Briefing Validation</h2>
+        <p class="modal-desc">Submit your credentials for verification. Access is granted solely at the discretion of the Mirza office.</p>
+        <div class="modal-divider"></div>
+        <form id="briefingForm" onsubmit="handleSubmit(event)" novalidate>
+          <div class="field">
+            <label class="field-label" for="fullName">Full Name</label>
+            <input class="field-input" type="text" id="fullName" placeholder="Enter your full name" required autocomplete="off" />
+          </div>
+          <div class="field">
+            <label class="field-label" for="firmName">Firm / Practice Name</label>
+            <input class="field-input" type="text" id="firmName" placeholder="Enter your firm or practice name" required autocomplete="off" />
+          </div>
+          <div class="field">
+            <label class="field-label" for="briefingId">Unique Briefing ID</label>
+            <input class="field-input" type="text" id="briefingId" placeholder="e.g. AX-2026-XXXXX" required autocomplete="off" style="letter-spacing:0.18em;" />
+          </div>
+          <button type="submit" class="btn-submit" id="submitBtn">Validate Credentials</button>
+        </form>
+      </div>
+
+      <!-- Success -->
+      <div class="modal-success" id="successState">
+        <div class="success-ring">&#10003;</div>
+        <h3 class="success-heading">Briefing ID Logged</h3>
+        <p class="success-body">
+          A member of the Mirza office will contact you if your firm is selected for the current optimization window.
+          <span class="success-note">This communication channel is now closed.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Scripts ───────────────────────────────────────────── -->
+  <script>
+    /* Nav scroll effect */
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* Modal */
+    const overlay = document.getElementById('modalOverlay');
+
+    function openModal() {
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    /* Form submit */
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.textContent = 'Processing…';
+      btn.disabled = true;
+      setTimeout(() => {
+        document.getElementById('formState').style.display = 'none';
+        document.getElementById('successState').style.display = 'block';
+      }, 1500);
+    }
+
+    /* Static — no scroll reveal animations */
+  </script>
+</body>
+</html>
