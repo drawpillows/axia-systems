@@ -504,6 +504,43 @@
       .footer-main { grid-template-columns: 1fr; gap: 44px; padding: 60px 32px 40px; }
       .footer-bottom { padding: 20px 32px 36px; flex-direction: column; gap: 12px; text-align: center; }
     }
+
+    @media (max-width: 600px) {
+      /* Nav */
+      nav { padding: 20px 20px; }
+      .nav-cities { display: none; }
+
+      /* Page header */
+      .page-header { padding: 120px 24px 48px; }
+      .page-eyebrow { font-size: 8px; }
+      .page-title { font-size: clamp(36px, 12vw, 60px); letter-spacing: 0.08em; }
+
+      /* Content */
+      .content-wrap { padding: 48px 24px; }
+      .content-grid { grid-template-columns: 1fr; gap: 32px; }
+      .content-heading { font-size: clamp(26px, 8vw, 40px); }
+      .content-body p { font-size: 14px; line-height: 1.75; }
+
+      /* Protocol grid */
+      .protocol-grid { grid-template-columns: 1fr; gap: 20px; }
+      .protocol-card { padding: 28px 24px; }
+      .protocol-title { font-size: 13px; }
+      .protocol-body { font-size: 13px; }
+
+      /* Empowerment / exclusivity sections */
+      .empowerment-wrap { padding: 48px 24px; }
+      .exclusivity-wrap { padding: 48px 24px; }
+      .section-heading { font-size: clamp(26px, 8vw, 40px); }
+      .section-body p { font-size: 14px; line-height: 1.75; }
+
+      /* Closing statement */
+      .statement-wrap { padding: 48px 24px; }
+      .statement-text { font-size: clamp(18px, 5vw, 26px); line-height: 1.5; }
+
+      /* Footer */
+      .footer-main { padding: 48px 24px 32px; }
+      .footer-bottom { padding: 16px 24px 32px; }
+    }
   </style>
 </head>
 <body>

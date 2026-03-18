@@ -549,11 +549,43 @@
       .founder-block.reverse { grid-template-columns: 1fr; }
       .founder-block.reverse .founder-photo-wrap { order: 1; }
       .founder-block.reverse .founder-text { order: 2; }
-      .founder-photo { aspect-ratio: 1/1; }
       .doctrine-wrap { padding: 60px 32px; }
       .doctrine-inner { grid-template-columns: 1fr; gap: 48px; }
       .footer-main { grid-template-columns: 1fr; gap: 44px; padding: 60px 32px 40px; }
       .footer-bottom { padding: 20px 32px 36px; flex-direction: column; gap: 12px; text-align: center; }
+    }
+
+    @media (max-width: 600px) {
+      /* Nav */
+      nav { padding: 20px 20px; }
+      .nav-cities { display: none; }
+
+      /* Page header */
+      .page-header { padding: 120px 24px 48px; }
+      .page-eyebrow { font-size: 8px; }
+      .page-title { font-size: clamp(40px, 13vw, 64px); letter-spacing: 0.08em; }
+
+      /* Founders */
+      .founders-wrap { padding: 48px 24px; }
+      .founder-block { grid-template-columns: 1fr; gap: 32px; padding-bottom: 64px; margin-bottom: 64px; }
+      .founder-block.reverse { grid-template-columns: 1fr; }
+      .founder-block.reverse .founder-photo-wrap { order: 1; }
+      .founder-block.reverse .founder-text { order: 2; }
+      .founder-photo-wrap { width: 100%; height: auto; }
+      .founder-photo { width: 100%; height: auto; aspect-ratio: 3/4; }
+      .founder-text-heading { font-size: clamp(28px, 9vw, 44px); }
+      .founder-text-body p { font-size: 14px; line-height: 1.75; }
+
+      /* Doctrine */
+      .doctrine-wrap { padding: 48px 24px; }
+      .doctrine-inner { grid-template-columns: 1fr; gap: 40px; }
+      .doctrine-heading { font-size: clamp(28px, 9vw, 44px); }
+      .doctrine-stat-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+      .doctrine-stat-value { font-size: 36px; }
+
+      /* Footer */
+      .footer-main { padding: 48px 24px 32px; }
+      .footer-bottom { padding: 16px 24px 32px; }
     }
   </style>
 </head>

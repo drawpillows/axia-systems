@@ -1212,9 +1212,48 @@
     }
 
     @media (max-width: 600px) {
-      .hero-title { letter-spacing: 0.1em; }
-      .hero-gate { padding-left: 16px; }
-      .interlude-content { padding: 80px 28px; }
+      /* Nav */
+      nav { padding: 20px 20px; }
+      .nav-cities { display: none; }
+
+      /* Hero */
+      .hero { padding: 80px 24px 60px; }
+      .hero-eyebrow { font-size: 8px; letter-spacing: 0.35em; top: 9%; }
+      .hero-title { font-size: clamp(52px, 16vw, 80px); letter-spacing: 0.08em; }
+      .hero-descriptor { font-size: 10px; letter-spacing: 0.14em; margin-top: 16px; }
+      .hero-access-block { padding: 0 24px 48px; }
+      .hero-gate { padding-left: 0; }
+
+      /* Cards */
+      .section-wrap { padding: 60px 24px; }
+      .cards-grid { grid-template-columns: 1fr; gap: 24px; }
+      .card { padding: 32px 28px; }
+      .card-title { font-size: 18px; }
+
+      /* Delivery break */
+      .delivery-break { flex-direction: column; padding: 60px 24px; gap: 32px; }
+      .delivery-img { width: 100%; height: 220px; }
+      .delivery-caption { padding: 0; }
+      .delivery-label { font-size: 9px; }
+      .delivery-text { font-size: 13px; }
+
+      /* Vetting */
+      .vetting-wrap { padding: 60px 24px; }
+      .vetting-grid { grid-template-columns: 1fr; gap: 32px; }
+      .criteria-block { padding: 28px 24px; }
+      .vetting-close { font-size: 9px; letter-spacing: 0.3em; margin-top: 48px; }
+
+      /* Interlude */
+      .interlude-content { padding: 60px 24px; }
+      .interlude-quote { font-size: 16px; line-height: 1.6; }
+
+      /* Footer */
+      .footer-main { padding: 48px 24px 32px; }
+      .footer-bottom { padding: 16px 24px 32px; }
+      .footer-hubs { gap: 24px; }
+
+      /* Modal */
+      .modal-box { padding: 32px 20px; width: 92vw; }
     }
   </style>
 </head>
