@@ -288,7 +288,24 @@
       background: var(--onyx-card);
       padding: 40px 36px;
       border: 1px solid var(--gunmetal);
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s, border-color 0.4s;
     }
+    .protocol-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .protocol-card:hover {
+      background: #131313;
+      border-color: var(--gold-dim);
+    }
+    .protocol-card:hover::after { opacity: 1; }
 
     .protocol-num {
       font-family: var(--serif);

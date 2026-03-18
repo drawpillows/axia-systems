@@ -396,7 +396,25 @@
     .doctrine-stat {
       background: var(--onyx);
       padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s, border-color 0.4s;
+      border: 1px solid transparent;
     }
+    .doctrine-stat::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .doctrine-stat:hover {
+      background: #131313;
+      border-color: var(--gold-dim);
+    }
+    .doctrine-stat:hover::after { opacity: 1; }
 
     .doctrine-stat-num {
       font-family: var(--serif);

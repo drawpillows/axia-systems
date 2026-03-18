@@ -819,12 +819,24 @@
       background: var(--onyx-card);
       padding: 48px 40px 52px;
       position: relative;
-      transition: background 0.4s;
+      overflow: hidden;
+      transition: background 0.4s, border-color 0.4s;
+      border: 1px solid var(--gunmetal);
     }
-
+    .criteria-block::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
     .criteria-block:hover {
       background: #131313;
+      border-color: var(--gold-dim);
     }
+    .criteria-block:hover::after { opacity: 1; }
 
     .criteria-num {
       font-family: var(--serif);
