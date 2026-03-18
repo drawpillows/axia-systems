@@ -112,6 +112,18 @@
       gap: 36px;
     }
 
+    .nav-cities {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.45em;
+      color: rgba(245,245,245,0.3);
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
     /* ── Hamburger ────────────────────────────────────────────── */
     .nav-hamburger {
       background: none;
@@ -228,9 +240,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       text-align: center;
-      padding: 120px 48px 64px;
+      padding: 120px 48px 80px;
       overflow: hidden;
     }
 
@@ -382,8 +394,8 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: url('hero-bg.jpg') center 40% / cover no-repeat;
-      filter: blur(4px) brightness(0.18) saturate(0.5);
+      background: url('axia-hero-bg.webp') center center / cover no-repeat;
+      filter: blur(0px) brightness(0.55) saturate(0.6);
       transform: scale(1.06);
     }
 
@@ -391,8 +403,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 70% 55% at 50% 48%, rgba(15,15,15,0.82) 0%, rgba(15,15,15,0.55) 55%, rgba(15,15,15,0.15) 100%),
-        linear-gradient(to bottom, rgba(15,15,15,0.5) 0%, transparent 25%, transparent 75%, rgba(15,15,15,0.95) 100%);
+        radial-gradient(ellipse 70% 55% at 50% 48%, rgba(10,10,10,0.6) 0%, rgba(10,10,10,0.3) 55%, rgba(10,10,10,0.05) 100%),
+        linear-gradient(to bottom, rgba(10,10,10,0.4) 0%, transparent 20%, transparent 75%, rgba(10,10,10,0.92) 100%);
     }
 
     .hero-logo-mark {
@@ -745,7 +757,45 @@
       font-weight: 500;
     }
 
-     /* ── Criteria Grid ─────────────────────────────────────────── */
+     /* ── Delivery Break ─────────────────────────────────────────── */
+    .delivery-break {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 520px;
+    }
+
+    .delivery-img {
+      background: url('axia-box-delivery.webp') center center / cover no-repeat;
+    }
+
+    .delivery-caption {
+      background: var(--onyx-mid);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 72px;
+      border-top: 1px solid var(--gunmetal);
+      border-bottom: 1px solid var(--gunmetal);
+    }
+
+    .delivery-label {
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.45em;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .delivery-text {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.9;
+      color: rgba(245,245,245,0.55);
+      max-width: 420px;
+    }
+
+    /* ── Criteria Grid ─────────────────────────────────────────── */
     .criteria-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -1170,6 +1220,7 @@
       <img src="logo.png" alt="AXIA Systems" class="nav-logo-img" />
       <span class="nav-logo-text">AXIA Systems</span>
     </a>
+    <p class="nav-cities">Chicago &nbsp;&nbsp;•&nbsp;&nbsp; Miami &nbsp;&nbsp;•&nbsp;&nbsp; Dubai</p>
     <button class="nav-hamburger" id="menuToggle" onclick="toggleMenu()" aria-label="Menu">
       <span></span>
       <span></span>
@@ -1181,7 +1232,6 @@
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
-    <p class="hero-cities">Chicago &nbsp;&nbsp;•&nbsp;&nbsp; Miami &nbsp;&nbsp;•&nbsp;&nbsp; Dubai</p>
     <div class="hero-content">
       <h1 class="hero-title">AXIA<br>Systems</h1>
       <p class="hero-eyebrow">A Mirza Minds Portfolio Company</p>
@@ -1237,6 +1287,15 @@
           <p class="card-body">We manage the frontier of AI and automation so your focus stays on the work that built your reputation.</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- ── Delivery Visual Break ────────────────────────────── -->
+  <div class="delivery-break">
+    <div class="delivery-img"></div>
+    <div class="delivery-caption">
+      <p class="delivery-label">The Briefing</p>
+      <p class="delivery-text">Every selected organization receives a private intelligence briefing before any engagement begins. Delivered in person. Prepared exclusively for them.</p>
     </div>
   </div>
 
