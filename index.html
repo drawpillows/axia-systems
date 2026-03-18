@@ -154,23 +154,23 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: url('hero-bg.jpg') center 40% / cover no-repeat;
-      filter: blur(4px) brightness(0.18) saturate(0.5);
-      transform: scale(1.06);
+      background: url('hero-bg.jpg') center center / cover no-repeat;
+      transform: scale(1.0);
     }
 
     .hero-overlay {
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 80% 60% at 50% 50%, transparent 20%, rgba(15,15,15,0.7) 80%),
-        linear-gradient(to bottom, rgba(15,15,15,0.3) 0%, transparent 30%, transparent 70%, rgba(15,15,15,0.9) 100%);
+        radial-gradient(ellipse 90% 70% at 50% 50%, rgba(15,15,15,0.35) 0%, rgba(15,15,15,0.75) 70%, rgba(15,15,15,0.95) 100%),
+        linear-gradient(to bottom, rgba(15,15,15,0.4) 0%, transparent 40%, transparent 75%, rgba(15,15,15,1) 100%);
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 900px;
+      max-width: 1100px;
+      width: 100%;
     }
 
     .hero-logo-mark {
@@ -195,14 +195,16 @@
 
     .hero-title {
       font-family: var(--serif);
-      font-size: clamp(60px, 9vw, 110px);
-      font-weight: 700;
-      letter-spacing: 0.2em;
+      font-size: clamp(22px, 3.2vw, 46px);
+      font-weight: 600;
+      letter-spacing: 0.3em;
       color: var(--cloud);
-      line-height: 1;
+      line-height: 1.55;
       text-transform: uppercase;
-      margin-bottom: 24px;
-
+      margin-bottom: 64px;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .hero-rule {
@@ -293,6 +295,61 @@
     }
 
     .btn-primary:hover .btn-arrow { width: 28px; }
+
+    /* ── Hero Access Input ─────────────────────────────────── */
+    .hero-access-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-input-wrap {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid rgba(245,245,245,0.25);
+      width: 420px;
+      max-width: 90vw;
+      transition: border-color 0.3s;
+    }
+
+    .hero-input-wrap:focus-within {
+      border-bottom-color: rgba(245,245,245,0.7);
+    }
+
+    .hero-access-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.35em;
+      color: var(--cloud);
+      text-transform: uppercase;
+      padding: 14px 0;
+      caret-color: var(--gold);
+    }
+
+    .hero-access-input::placeholder {
+      color: rgba(245,245,245,0.3);
+      letter-spacing: 0.35em;
+    }
+
+    .hero-access-submit {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: rgba(245,245,245,0.5);
+      padding: 8px 0 8px 16px;
+      display: flex;
+      align-items: center;
+      transition: color 0.3s;
+    }
+
+    .hero-access-submit:hover {
+      color: var(--cloud);
+    }
 
     .hero-scroll-indicator {
       position: absolute;
@@ -915,18 +972,26 @@
     <div class="hero-content">
       <img src="logo-hero.png" alt="AXIA Systems Logo" class="hero-logo-mark" />
       <p class="hero-eyebrow">A Mirza Minds Portfolio Company</p>
-      <h1 class="hero-title">AXIA<br>Systems</h1>
-      <div class="hero-rule"></div>
-      <p class="hero-sub">Elite Systems Intelligence &nbsp;|&nbsp; Chicago &nbsp;•&nbsp; Miami &nbsp;•&nbsp; Dubai</p>
-      <p class="hero-gate">
-        Access to the AXIA Systems Intelligence Layer is strictly by invitation or hand-selection. We do not accept public solicitations.
-      </p>
-      <button class="btn-primary" onclick="openModal()">
-        ENTER YOUR ACCESS CODE
-        <span class="btn-arrow"></span>
-      </button>
+      <h1 class="hero-title">Adaptation is the eventual requirement.<br>Early implementation is the architecture of dominance.</h1>
+      <div class="hero-access-row">
+        <div class="hero-input-wrap">
+          <input
+            type="text"
+            id="heroAccessCode"
+            class="hero-access-input"
+            placeholder="ENTER ACCESS CODE"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button class="hero-access-submit" onclick="handleHeroSubmit()" aria-label="Submit">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="2" y1="9" x2="16" y2="9" stroke="currentColor" stroke-width="1.2"/>
+              <polyline points="10,3 16,9 10,15" fill="none" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
-
   </section>
 
   <!-- ── Core Competencies ──────────────────────────────────── -->
@@ -1120,6 +1185,20 @@
         document.getElementById('successState').style.display = 'block';
       }, 1500);
     }
+
+    /* Hero access code submit — pre-fills modal and opens it */
+    function handleHeroSubmit() {
+      const code = document.getElementById('heroAccessCode').value.trim();
+      if (code) {
+        const briefingInput = document.getElementById('briefingId');
+        if (briefingInput) briefingInput.value = code;
+      }
+      openModal();
+    }
+
+    document.getElementById('heroAccessCode').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleHeroSubmit();
+    });
 
     /* Static — no scroll reveal animations */
   </script>
